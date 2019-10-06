@@ -17,4 +17,4 @@ class SegmentSerializer(serializers.ModelSerializer):
         depth=1
 
 
-        
+ 

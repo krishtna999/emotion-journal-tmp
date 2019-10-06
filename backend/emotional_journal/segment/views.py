@@ -1,10 +1,14 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status,generics
+from django_filters import rest_framework as filters
+
 
 from tag.models import EventTag, SegmentTag
 from .models import Segment, Event
 from .functions import create_events, create_eventTags, create_segmentTags
+from .serializers import EventSerializer,SegmentSerializer
+from .filters import EventFilter,SegmentFilter
 # Create your views here.
 
 
@@ -36,8 +40,19 @@ class EventCreate(APIView):
 
 
 
-# class EventList(APIView):
-   # def get(self,request):
+# NOTE: segment__datetime__range is exclusive of end date
+class EventList(generics.ListAPIView):
+   queryset=Event.objects.all()
+   serializer_class=EventSerializer
+   filter_backends = (filters.DjangoFilterBackend,)
+   filterset_class = EventFilter
+
+class SegmentList(generics.ListAPIView):
+   queryset=Segment.objects.all()
+   serializer_class=SegmentSerializer
+   filter_backends = (filters.DjangoFilterBackend,)
+   filterset_class = SegmentFilter
+
 
 '''
 Sample SegmentCreate POST Request
