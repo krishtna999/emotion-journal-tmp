@@ -10,7 +10,7 @@ class EventTag(models.Model):
     '''
     type=models.CharField(max_length=80,choices=EVENT_TAG_CHOICES,default="CUSTOM")
     name=models.CharField(max_length=80)
-    note=models.TextField()
+    note=models.TextField(blank=True, null=True)
     event=models.ForeignKey(Event,on_delete=models.CASCADE,related_name="tags")
 
 class SegmentTag(models.Model):
@@ -20,7 +20,9 @@ class SegmentTag(models.Model):
     '''
     type=models.CharField(max_length=80,choices=SEGMENT_TAG_CHOICES,default="CUSTOM")
     name=models.CharField(max_length=80)
-    segments=models.ManyToManyField(Segment,related_name="tags")
+    segment=models.ForeignKey(Segment,on_delete=models.CASCADE,related_name="tags")
+    
+
     
 
 
