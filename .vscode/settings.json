@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "backend/venv/bin/python3"
+    "python.pythonPath": "./backend/venv/bin/python3",
+    "python.autoComplete.extraPaths": ["./backend/emotional_journal/"],
 }
