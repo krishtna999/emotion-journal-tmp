@@ -4,12 +4,13 @@
 Create a virtual environment in the project folder.
 
 ```bash
-python3 -m venv venv 
+python3 -m venv backend/venv 
 ```
 
-Activate the environment
+Move into the backend folder and activate the environment
 
 ```bash
+cd backend/
 source venv/bin/activate
 ```
 
