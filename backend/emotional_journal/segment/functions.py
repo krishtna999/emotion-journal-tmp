@@ -24,8 +24,5 @@ def create_segmentTags(tags, segment):
     for tag in tags:
         SegmentTag.objects.create(type=tag['type'],name=tag['name'],segment=segment)
 
-def retrieve_event_text(event):
-    retrieve_text=event.segment.text[event.start_index:event.end_index]
-    return retrieve_text
 
     
