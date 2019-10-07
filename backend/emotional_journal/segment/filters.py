@@ -8,6 +8,8 @@ class EventFilter(django_filters.FilterSet):
             'tags__type': ['exact'],
             'tags__name':['exact'],
             'segment__datetime': ['date','range'],
+            'segment':['exact'],
+            
         }
 
 
