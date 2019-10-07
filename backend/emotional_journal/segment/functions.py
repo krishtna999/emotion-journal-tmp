@@ -4,6 +4,8 @@ from .models import Segment, Event
 
 def create_events(events, segment):
     for event in events:
+        if(event['start_index']<0 or event['end_index']>=len(segment.text)):
+            raise Exception('Event boundaries exceed Segment boundaries')
         new_event = Event.objects.create(
             start_index=event['start_index'], end_index=event['end_index'], segment=segment)
 
