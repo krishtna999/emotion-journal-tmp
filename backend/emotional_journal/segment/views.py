@@ -1,55 +1,69 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status,generics
+from rest_framework import status, generics, viewsets
 from django_filters import rest_framework as filters
 
 
 from tag.models import EventTag, SegmentTag
 from .models import Segment, Event
 from .functions import create_events, create_eventTags, create_segmentTags
-from .serializers import EventSerializer,SegmentSerializer
-from .filters import EventFilter,SegmentFilter
-# Create your views here.
+from .serializers import EventSerializer, SegmentSerializer
+from .filters import EventFilter, SegmentFilter
+'''
+    TODO: Add functionality for Segment and Event PARTIAL_UPDATE
+    The text field can be updated but however, the start_index and end_index of the event
+    have to be updated accordingly too.
 
+    If text was added before the start_index of the event, then the start_index has to be 
+    increased to the number of characters added.
+
+    If text was added in the event itself, then the end_index must be increased by the number of
+    added characters.
+
+    If text was added after end_index, the event should be left untouched.
+
+    NOTE: This should be done for all events within the segment
+
+'''
 
 class SegmentCreate(APIView):
     def post(self, request):
-      data = request.data
-      text = data['text']
-      datetime = data['datetime']
-      new_segment = Segment.objects.create(text=text, datetime=datetime)
-      create_events(data['events'], new_segment)
-      create_segmentTags(data['tags'], new_segment)
-      return Response({'status': True}, status=status.HTTP_201_CREATED)
+      try:
+         data = request.data
+         text = data['text']
+         datetime = data['datetime']
+         new_segment = Segment.objects.create(text=text, datetime=datetime)
+         create_events(data['events'], new_segment)
+         create_segmentTags(data['tags'], new_segment)
+         return Response({'status': True}, status=status.HTTP_201_CREATED)
+      except Exception as e:
+         return Response({'status': False, 'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class EventCreate(APIView):
     def post(self, request):
-
-      data = request.data
       try:
-         segment = Segment.get(pk=data['segment_id'])
-      except:
-         return Response({'status': False, 'message': 'Segment with id'+str(data['segment_id'])+' not found'}, status=status.HTTP_201_CREATED)
+         data = request.data
 
-      new_event = Event.objects.create(
-         start_index=data['start_index'], end_index=data['end_index'], segment=segment)
+         segment = Segment.objects.get(pk=data['segment_id'])
+         create_events([data], segment)
+         return Response({'status': True}, status=status.HTTP_201_CREATED)
 
-      create_eventTags(data['tags'], new_event)
-      return Response({'status': True}, status=status.HTTP_201_CREATED)
-
+      except Exception as e:
+         return Response({'status': False, 'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
 # NOTE: segment__datetime__range is exclusive of end date
-class EventList(generics.ListAPIView):
-   queryset=Event.objects.all()
-   serializer_class=EventSerializer
+class EventViewSet(viewsets.ModelViewSet):
+   queryset = Event.objects.all()
+   serializer_class = EventSerializer
    filter_backends = (filters.DjangoFilterBackend,)
    filterset_class = EventFilter
 
-class SegmentList(generics.ListAPIView):
-   queryset=Segment.objects.all()
-   serializer_class=SegmentSerializer
+
+class SegmentViewSet(viewsets.ModelViewSet):
+   queryset = Segment.objects.all()
+   serializer_class = SegmentSerializer
    filter_backends = (filters.DjangoFilterBackend,)
    filterset_class = SegmentFilter
 
