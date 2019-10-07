@@ -8,6 +8,14 @@ class EventTagFilter(django_filters.FilterSet):
         fields = {
             'type': ['exact'],
             'name':['exact'],
-            'event__segment__datetime__date': ['exact','gt','lt'],
-            # 'event__segment__datetime__contains': ['exact'] 
+            'event__segment__datetime': ['date','range'],
+        }
+
+class SegmentTagFilter(django_filters.FilterSet):
+    class Meta:
+        model = SegmentTag
+        fields = {
+            'type': ['exact'],
+            'name':['exact'],
+            'segment__datetime': ['date','range'],
         }
