@@ -13,6 +13,11 @@ class EventTag(models.Model):
     note=models.TextField(blank=True, null=True)
     event=models.ForeignKey(Event,on_delete=models.CASCADE,related_name="tags")
 
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['name','event'],name='unique tag per event')
+        ]
+
 class SegmentTag(models.Model):
     '''
     Segment Tags are tied to Segments.
@@ -21,6 +26,11 @@ class SegmentTag(models.Model):
     type=models.CharField(max_length=80,choices=SEGMENT_TAG_CHOICES,default="CUSTOM")
     name=models.CharField(max_length=80)
     segment=models.ForeignKey(Segment,on_delete=models.CASCADE,related_name="tags")
+
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['name','segment'],name='unique tag per segment')
+        ]
     
 
     
