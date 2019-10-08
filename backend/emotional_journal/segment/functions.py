@@ -1,4 +1,5 @@
 from tag.models import EventTag, SegmentTag
+from .constants import TOP_LEVEL_EMOTIONS
 from .models import Segment, Event
 
 
@@ -27,4 +28,12 @@ def create_segmentTags(tags, segment):
         SegmentTag.objects.create(type=tag['type'],name=tag['name'],segment=segment)
 
 
-    
+
+def transform_emotions(emotions):
+    transformed_set=emotions.copy()
+    # print(emotions)
+    for emotion in emotions:
+
+        if(emotion in TOP_LEVEL_EMOTIONS):
+            transformed_set+=TOP_LEVEL_EMOTIONS[emotion]
+    return transformed_set
