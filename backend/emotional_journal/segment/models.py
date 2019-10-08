@@ -17,3 +17,4 @@ class Event(models.Model):
     def retrieve_event_text(self):
         retrieve_text = self.segment.text[self.start_index:self.end_index]
         return retrieve_text
+    
