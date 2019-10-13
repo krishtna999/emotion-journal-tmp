@@ -5,6 +5,7 @@ EVENT_TAG_CHOICES = [
 ]
 SEGMENT_TAG_CHOICES = [
     ('PERSON','Person'),
+    ('EMOTION','Emotion'),
     ('CUSTOM','Custom'),                #Just a custom tag.
     ('STORY_ARC','Story Arc'),
 ]
