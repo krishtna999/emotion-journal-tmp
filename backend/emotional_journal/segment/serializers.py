@@ -16,7 +16,7 @@ class EventSerializer(serializers.ModelSerializer):
 class SegmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Segment
-        fields = ['id','text','datetime','tags']
+        fields = ['id','text','datetime','tags','events']
         depth=1
 
 
