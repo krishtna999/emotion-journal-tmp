@@ -9,23 +9,6 @@ from .models import Entry
 from .serializers import EntrySerializer
 from .constants import FIRST_EVENT_ORDER_ID
 from .filters import EntryFilter
-'''
-    TODO: Add functionality for Segment and Event PARTIAL_UPDATE
-    The text field can be updated but however, the start_index and end_index of the event
-    have to be updated accordingly too.
-
-    If text was added before the start_index of the event, then the start_index has to be
-    increased to the number of characters added.
-
-    If text was added in the event itself, then the end_index must be increased by the number of
-    added characters.
-
-    If text was added after end_index, the event should be left untouched.
-
-    NOTE: This should be done for all events within the segment
-
-'''
-
 
 class EntryCreate(APIView):
     def post(self, request):
