@@ -1,16 +1,9 @@
 from rest_framework import serializers
 
-from .models import EventTag,SegmentTag
+from .models import Tag
 
-class EventTagSerializer(serializers.ModelSerializer):
+class TagSerializer(serializers.ModelSerializer):
     class Meta:
-        model = EventTag
+        model = Tag
         fields = ['id','type','name','note','event']
         # depth=1
-
-class SegmentTagSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SegmentTag
-        fields = ['id','type','name','segment']
-        # depth=1
-
