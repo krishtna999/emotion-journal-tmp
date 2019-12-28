@@ -46,58 +46,10 @@ class EntryCreate(APIView):
 
 
 '''
-TODO: Change this
-Sample SegmentCreate POST Request
-
+Sample POST JSON:
 {
-   "text":"I finally went out with my squad really after a long time. It was an amazing day, as i spent more time with my four bestfriends. Me, sara, jane and simran went for a movie and had a good lunch. A whole day shopping is a dream for every girl that too with her besties, trying clothes in the fitting room,taking photos etc,. I felt very relaxed and happy walking in the free air and making fun with my friends.Even when i had a great time with my friends today, one thing really pissed me off. Sara was annoying to me the whole day as i was very close with jane. I dont really understand why she was so possessive about me being close with jane, rather she knows that she and I are best friends for life. This whole thing made me sad and sara being very mean to me.",
-   "events":[
-      {
-         "start_index":194,
-         "end_index":406,
-         "tags":[
-            {
-               "type":"EMOTION",
-               "name":"Happy",
-               "note":"I was happy because of my friends"
-            },
-            {
-               "type":"EMOTION",
-               "name":"Overjoyed"
-            }
-         ]
-      },
-      {
-         "start_index":492,
-         "end_index":762,
-         "tags":[
-            {
-               "type":"EMOTION",
-               "name":"MAD",
-               "note":"Mad because of Sara's behaviour"
-            },
-            {
-               "type":"EMOTION",
-               "name":"Hurt",
-               "note":"Testing"
-            }
-         ]
-      }
-   ],
-   "tags":[
-      {
-         "type":"PERSON",
-         "name":"Sara"
-      },
-      {
-         "type":"PERSON",
-         "name":"Jane"
-      },
-      {
-         "type":"PERSON",
-         "name":"Simran"
-      }
-   ],
-   "datetime":"2019-12-1T14:41:46-05"
+   "text":"I finally went out with my squad really after a long time. It was an amazing day, as i spent more time with my four bestfriends. Me, sara, jane and simran went for a movie and had a good lunch.A whole day shopping is a dream for every girl that too with her besties, trying clothes in the fitting room,taking photos etc,. I felt very relaxed and happy walking in the free air and making fun with my friends.Even when i had a great time with my friends today, one thing really pissed me off. Sara was annoying to me the whole day as i was very close with jane. I dont really understand why she was so possessive about me being close with jane, rather she knows that she and I are best friends for life. This whole thing made me sad and sara being very mean to me."
 }
+
+Can add datetime
 '''
