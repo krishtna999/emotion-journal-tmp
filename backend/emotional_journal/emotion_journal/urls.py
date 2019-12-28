@@ -23,8 +23,9 @@ urlpatterns = [
     # jwt auth tokens :
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/segment/',include('segment.urls')),
-    path('api/tag/',include('tag.urls')),
-
-    
+    path('api/entry/',include('entry.urls')),
+    path('api/event/',include('event.urls')),
+    path('api/tag/',include('tag.urls')),   
 ]
+
+

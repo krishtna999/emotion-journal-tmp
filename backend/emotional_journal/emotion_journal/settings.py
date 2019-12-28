@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'django_filters',
-    'segment',
+    'entry',
+    'event',
     'tag',
     
     
