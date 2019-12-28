@@ -25,7 +25,9 @@ class EntryCreate(APIView):
         except Exception as e:
             return Response({'status': False, 'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-
+class DestroyEntryView(generics.DestroyAPIView):
+   serializer_class=EntrySerializer
+   queryset=Entry.objects.all()
 
 
 '''
