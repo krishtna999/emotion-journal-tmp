@@ -1,5 +1,5 @@
 from django.db import models
-from entry.models import Event
+from event.models import Event
 from .choices import EVENT_TAG_CHOICES
 
 
