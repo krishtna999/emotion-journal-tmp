@@ -18,6 +18,8 @@ class EventCreate(APIView):
             base_event = Event.objects.get(pk=data['base_event_id'])
             '''
             start_index and end_index have to be the exact indices.
+
+            TODO: Validate start and end indices boundary wrt string length.
             '''
             start_index = data['start_index']
             end_index = data['end_index']
