@@ -5,7 +5,7 @@ from rest_framework.routers import SimpleRouter
 from . import views
 
 router=SimpleRouter()
-router.register('event',views.TagViewSet)
+router.register('',views.TagViewSet)
 # print(router.urls)
 
 urlpatterns=router.urls
