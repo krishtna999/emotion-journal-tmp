@@ -5,7 +5,7 @@ from django_filters import rest_framework as filters
 
 from event.models import Event
 
-from .models import Entry
+from .models import Entry   
 from .serializers import EntrySerializer
 from .constants import FIRST_EVENT_ORDER_ID
 from .filters import EntryFilter
@@ -25,9 +25,11 @@ class EntryCreate(APIView):
         except Exception as e:
             return Response({'status': False, 'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-class DestroyEntryView(generics.DestroyAPIView):
-   serializer_class=EntrySerializer
-   queryset=Entry.objects.all()
+class EntryViewSet(viewsets.ModelViewSet):
+    queryset = Entry.objects.all().order_by('datetime')
+    serializer_class = EntrySerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = EntryFilter
 
 
 '''
