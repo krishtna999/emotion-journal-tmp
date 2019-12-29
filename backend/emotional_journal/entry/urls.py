@@ -3,6 +3,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.EntryCreate.as_view(), name='Create New Entry'),
-    path('<int:pk>/', views.DestroyEntryView.as_view(), name='Delete Entry'),
+    path('create/', views.EntryCreate.as_view(), name='Create New Entry'),
+    path('', views.EntryViewSet.as_view(
+        {'get': 'list'}), name='Filter Entry'),
+    path('<int:pk>/', views.EntryViewSet.as_view(
+        {'get': 'retrieve', 'patch': 'partial_update', 'delete': 'destroy'}), name='Retrieve Patch Delete Entry'),
 ]
+
+print(urlpatterns)
