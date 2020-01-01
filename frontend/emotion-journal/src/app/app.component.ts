@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+
+import {EntryDisplayComponent} from '../entry/entry-display/entry-display.component';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
