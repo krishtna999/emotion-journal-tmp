@@ -1,14 +1,10 @@
 from rest_framework import serializers
 
-from .models import Entry
+from .models import Tag
 
-from event.serializers import EventSerializer
-
-class EntrySerializer(serializers.ModelSerializer):
-    events=EventSerializer(many=True)
+class TagSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Entry
-        fields = ['id','datetime','events']
-        depth=1
-
+        model = Tag
+        fields = ['id','type','name','text','event']
+        # depth=1
 
