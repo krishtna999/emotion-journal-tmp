@@ -1,16 +1,11 @@
-<p>entry-display works!</p>
-
-<div *ngIf="json">
-    <!-- {{json|async}} -->
+<nb-layout>
+  <nb-layout-header>{{selected_date}}</nb-layout-header>
+  <nb-layout-column>
     <div *ngFor="let entry of json|async">
-        <div *ngFor="let event of entry.events">
-            <p>id:{{event.id}}</p>
-            <p>text:{{event.text}}</p>
-            <div *ngFor="let tag of event.tags">
-                <p>tag_id:{{tag.id}}</p>
-                <p>name:{{tag.name}}</p>
-                <p>type:{{tag.type}}</p>
-            </div>
-        </div>
+      <div *ngIf="entry"></div>
+      <div *ngFor="let event of entry.events">
+        <app-event-display [event]="event"></app-event-display>
+      </div>
     </div>
-</div>
+  </nb-layout-column>
+</nb-layout>
