@@ -1,1 +1,13 @@
-<p>event-display works!</p>
+<nb-card>
+    <nb-card-body>
+        {{event.text}}
+    </nb-card-body>
+    <nb-card-footer *ngIf="event.tags.length>0">
+            <mat-chip-list>
+                <mat-chip *ngFor="let tag of event.tags" [selectable]="selectable" (removed)="remove_tag(event)">
+                    {{tag.name}}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+    </nb-card-footer>
+</nb-card>
