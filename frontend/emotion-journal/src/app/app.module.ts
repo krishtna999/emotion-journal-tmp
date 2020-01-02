@@ -2,11 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NbLayoutModule,NbThemeModule,NbSidebarModule,NbThemeService } from '@nebular/theme';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { EntryModule } from '../entry/entry.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -18,12 +20,17 @@ import { EntryModule } from '../entry/entry.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot(),
+    NbSidebarModule.forRoot(),
+    NbLayoutModule,
     EntryModule,
-  ],
-  exports:[
 
   ],
-  providers: [],
+  exports: [
+
+  ],
+  providers: [NbThemeService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
