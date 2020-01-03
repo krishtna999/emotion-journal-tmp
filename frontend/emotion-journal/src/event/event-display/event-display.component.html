@@ -1,13 +1,12 @@
 <nb-card>
-    <nb-card-body>
+    <nb-card-body id="event_text">
         {{event.text}}
     </nb-card-body>
-    <nb-card-footer *ngIf="event.tags.length>0">
-            <mat-chip-list>
-                <mat-chip *ngFor="let tag of event.tags" [selectable]="selectable" (removed)="remove_tag(event)">
-                    {{tag.name}}
-                    <mat-icon matChipRemove>cancel</mat-icon>
-                </mat-chip>
-            </mat-chip-list>
+    <nb-card-footer *ngIf="event.tags.length>0" id="tag_footer">
+        <mat-chip-list>
+            <ng-container *ngFor="let tag of event.tags">
+                <app-tag-display [tag]="tag"></app-tag-display>
+            </ng-container>
+        </mat-chip-list>
     </nb-card-footer>
 </nb-card>
