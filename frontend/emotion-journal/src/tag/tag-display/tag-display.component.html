@@ -1,1 +1,7 @@
-<p>tag-display works!</p>
+<!-- <p>tag-display works!</p> -->
+<div>
+    <mat-chip *ngIf="!deleted" [selectable]="selectable" (removed)="remove_tag()">
+        {{tag.name}}
+        <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+</div>

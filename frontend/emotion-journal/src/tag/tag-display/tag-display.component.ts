@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tag-display',
@@ -6,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tag-display.component.css']
 })
 export class TagDisplayComponent implements OnInit {
-
+  deleted=false;
+  @Input() tag: object;
   constructor() { }
 
+  remove_tag(){
+    //TODO: Send a DELETE tag request
+    
+    this.deleted=true;
+  }
   ngOnInit() {
   }
 
