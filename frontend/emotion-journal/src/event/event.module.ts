@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EventDisplayComponent } from './event-display/event-display.component';
+
 import { NbCardModule } from '@nebular/theme';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
+
+import { EventDisplayComponent } from './event-display/event-display.component';
+
+import { TagModule } from '../tag/tag.module';
 
 @NgModule({
   declarations: [EventDisplayComponent],
@@ -11,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     NbCardModule,
     MatChipsModule,
-    MatIconModule,
+    TagModule,
   ],
   exports: [
     EventDisplayComponent
