@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { EntryService } from '../entry.service';
 
-import { EventDisplayComponent } from '../../event/event-display/event-display.component';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-entry-display',
@@ -10,15 +11,23 @@ import { EventDisplayComponent } from '../../event/event-display/event-display.c
   styleUrls: ['./entry-display.component.css']
 })
 export class EntryDisplayComponent implements OnInit {
-  selected_date='2019-12-28';
+  selected_date=new Date();
   constructor(private entryService: EntryService) { }
   json;
+  
+
+  // sdate=null;
+
+  getEntryByDate(){
+    // console.log(moment(this.selected_date).format('YYYY-MM-DD'));
+    this.json = this.entryService.getEntryByDate(moment(this.selected_date).format('YYYY-MM-DD'));
+    // this.json.subscribe(data => {
+    //   console.log(data[0]);
+    // }); 
+  }
 
   ngOnInit() {
-    this.json = this.entryService.getEntryByDate(this.selected_date);
-    this.json.subscribe(data => {
-      console.log(data[0]);
-    });
+    this.getEntryByDate();
   }
 
 }

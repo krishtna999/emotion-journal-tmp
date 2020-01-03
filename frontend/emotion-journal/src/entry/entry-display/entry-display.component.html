@@ -1,5 +1,9 @@
 <nb-layout>
-  <nb-layout-header>{{selected_date}}</nb-layout-header>
+  <nb-layout-header>
+    <input nbInput placeholder="Pick Date" [nbDatepicker]="picker" [(ngModel)]="selected_date" (ngModelChange)="getEntryByDate()">
+    <nb-datepicker #picker></nb-datepicker>
+  </nb-layout-header>
+
   <nb-layout-column>
     <div *ngFor="let entry of json|async">
       <div *ngIf="entry"></div>
