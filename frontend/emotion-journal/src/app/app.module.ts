@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NbLayoutModule,NbThemeModule,NbSidebarModule,NbDatepickerModule,NbThemeService } from '@nebular/theme';
+import { NbLayoutModule, NbThemeModule, NbSidebarModule, NbDatepickerModule, NbThemeService } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NbThemeModule.forRoot(),
     NbSidebarModule.forRoot(),
     NbDatepickerModule.forRoot(),
+    NbEvaIconsModule,
     NbLayoutModule,
     EntryModule,
 
