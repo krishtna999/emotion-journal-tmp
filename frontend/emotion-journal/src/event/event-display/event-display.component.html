@@ -1,6 +1,13 @@
 <nb-card>
-    <nb-card-body id="event_text">
-        {{event.text}}
+    <nb-card-body id="event_text" (dblclick)="makeEditable()">
+        <!-- <div> -->
+            <span [hidden]="_editing">{{event.text}}</span>
+            <form (keyup.enter)="updateEvent()" (keydown.enter)="suppressNewLine($event)" [hidden]="!_editing">
+                <!-- TODO: Add status input to indicate success/failure of saving of event text -->
+                <textarea rows="5" nbInput fullWidth wrap=hard shape="semi-round" [(ngModel)]="event.text" name="event_text">
+                </textarea>
+            </form>
+        <!-- </div> -->
     </nb-card-body>
     <nb-card-footer *ngIf="event.tags.length>0" id="tag_footer">
         <mat-chip-list>

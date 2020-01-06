@@ -7,13 +7,24 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class EventDisplayComponent implements OnInit {
   @Input() event: object;
+  _editing=false;
 
   constructor() { }
 
-  remove_tag(tag) {
-    const index = this.event['tags'].indexOf(tag);
-    this.event['tags'].splice(index, 1);
+  makeEditable(){
+    this._editing=true;
   }
+
+  updateEvent(){
+    this.event['text']=this.event['text'].replace('\n','');
+    console.log(this.event['text']);
+    this._editing=false;
+  }
+
+  suppressNewLine(event){
+    event.preventDefault();
+  }
+
   ngOnInit() {
   }
 
