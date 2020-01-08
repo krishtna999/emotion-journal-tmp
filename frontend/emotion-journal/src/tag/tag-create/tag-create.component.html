@@ -1,1 +1,21 @@
-<p>tag-create works!</p>
+<form [formGroup]="tagForm" (ngSubmit)="onSubmit()"> 
+    <mat-form-field class="tag-input-field">
+      <input type="text" placeholder="Tag Type" aria-label="Tag Type" matInput formControlName="typeControl" [matAutocomplete]="type">
+      <mat-autocomplete #type="matAutocomplete" autoActiveFirstOption>
+        <mat-option *ngFor="let option of filtered_type_Options | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="tag-input-field">
+      <input type="text" placeholder="Tag Name" aria-label="Tag Name" matInput formControlName="nameControl" [matAutocomplete]="name">
+      <mat-autocomplete #name="matAutocomplete" autoActiveFirstOption>
+        <mat-option *ngFor="let option of filtered_name_Options | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+  <button type="submit" nbButton shape="semi-round" status="info">Create Tag</button>
+  </form>
+

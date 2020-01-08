@@ -2,16 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NbLayoutModule, NbThemeModule, NbSidebarModule, NbDatepickerModule, NbThemeService } from '@nebular/theme';
+import { NbLayoutModule, NbThemeModule, NbSidebarModule, NbDatepickerModule, NbThemeService,NbWindowModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { EntryModule } from '../entry/entry.module';
+import { TagModule } from '../tag/tag.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { TagCreateComponent } from '../tag/tag-create/tag-create.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +28,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NbDatepickerModule.forRoot(),
     NbEvaIconsModule,
     NbLayoutModule,
+    NbWindowModule.forRoot(),
+
     EntryModule,
+    TagModule,
 
   ],
   exports: [
 
   ],
   providers: [NbThemeService,],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  entryComponents: [
+    TagCreateComponent,
+ ]
 })
 export class AppModule { }
