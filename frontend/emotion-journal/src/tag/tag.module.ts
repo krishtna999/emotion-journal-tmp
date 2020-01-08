@@ -5,6 +5,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 
 import { TagDisplayComponent } from './tag-display/tag-display.component';
+import { TagCreateComponent } from './tag-create/tag-create.component';
 
 
 
@@ -12,6 +13,7 @@ import { TagDisplayComponent } from './tag-display/tag-display.component';
 @NgModule({
   declarations: [
     TagDisplayComponent,
+    TagCreateComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { TagDisplayComponent } from './tag-display/tag-display.component';
   ],
   exports: [
     TagDisplayComponent,
+    TagCreateComponent,
   ]
 })
 export class TagModule { }
