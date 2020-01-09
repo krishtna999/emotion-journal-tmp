@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { NbWindowService } from '@nebular/theme';
+import { NbWindowService, NbIconConfig, NbGlobalPhysicalPosition } from '@nebular/theme';
 
 import { TagCreateComponent } from '../../tag/tag-create/tag-create.component';
+
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-event-display',
@@ -12,11 +14,17 @@ import { TagCreateComponent } from '../../tag/tag-create/tag-create.component';
 export class EventDisplayComponent implements OnInit {
   @Input() event: object;
   _editing = false;
+  _textAreaStatus='basic';
 
-  constructor(private windowService: NbWindowService) { }
+  constructor(private windowService: NbWindowService, private toastrService: NbToastrService) { }
 
   makeEditable() {
     this._editing = true;
+  }
+
+  saveLocalEvent(){
+    this._textAreaStatus='danger';
+    this._editing = false;
   }
 
   updateEvent() {
@@ -25,29 +33,38 @@ export class EventDisplayComponent implements OnInit {
     this.event['text'] = this.event['text'].replace('\n', '');
     console.log(this.event['text']);
     this._editing = false;
+    this._textAreaStatus='basic';
   }
 
   tagSelectedText() {
     if (window.getSelection().rangeCount == 0) {
       return false;
     }
-    // TODO: Call tag window from here on.
     let _selectionOptions = {
       'start_index': window.getSelection().getRangeAt(0).startOffset,
       'end_index': window.getSelection().getRangeAt(0).endOffset,
-      'event_id':this.event['id']
+      'event_id': this.event['id']
     }
 
-    
-    
-    
-    
+
+
+
+
     if (_selectionOptions['start_index'] == _selectionOptions['end_index']) {
-      // TODO: Write code to show a toastr that asks the user to select some text
+
+      const iconConfig: NbIconConfig = { icon: 'text-outline', pack: 'eva' };
+
+      this.toastrService.show(
+        'Please highlight some text to create a new event.',
+        `No Highlight Found`, {
+          preventDuplicates: true,
+        // status: 'warning',
+        position: NbGlobalPhysicalPosition.BOTTOM_LEFT, icon: iconConfig
+      });
       return false;
     }
-    
-    const windowRef = this.windowService.open(TagCreateComponent, { title:'New Tag',context: _selectionOptions});
+
+    const windowRef = this.windowService.open(TagCreateComponent, { title: 'New Tag', context: _selectionOptions });
   }
 
   suppressNewLine(event) {

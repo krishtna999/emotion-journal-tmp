@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NbLayoutModule, NbThemeModule, NbSidebarModule, NbDatepickerModule, NbThemeService,NbWindowModule } from '@nebular/theme';
+import { NbLayoutModule, NbThemeModule, NbSidebarModule, NbDatepickerModule, NbThemeService,NbWindowModule,NbToastrModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +29,7 @@ import { TagCreateComponent } from '../tag/tag-create/tag-create.component';
     NbEvaIconsModule,
     NbLayoutModule,
     NbWindowModule.forRoot(),
+    NbToastrModule.forRoot(),
 
     EntryModule,
     TagModule,

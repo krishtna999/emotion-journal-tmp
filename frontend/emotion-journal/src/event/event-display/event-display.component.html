@@ -1,10 +1,9 @@
-<nb-card id=event_card>
+<nb-card id=event_card accent="{{_textAreaStatus}}">
     <nb-card-body id="event_text" (dblclick)="makeEditable()">
         <span [hidden]="_editing">{{event.text}}</span>
-        <form (keyup.enter)="updateEvent()" (keydown.enter)="suppressNewLine($event)" [hidden]="!_editing">
-            <!-- TODO: Add status input to indicate success/failure of saving of event text -->
+        <form (keyup.enter)="updateEvent()" (keydown.enter)="suppressNewLine($event)" (keydown.escape)="saveLocalEvent()" [hidden]="!_editing">
             <textarea rows="5" nbInput fullWidth wrap=hard shape="semi-round" [(ngModel)]="event.text"
-                name="event_text">
+                name="event_text" status="{{_textAreaStatus}}">
                 </textarea>
         </form>
     </nb-card-body>
