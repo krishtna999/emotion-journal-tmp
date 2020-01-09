@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NbCardModule, NbInputModule, NbIconModule, NbButtonModule } from '@nebular/theme';
 
 import { MatChipsModule } from '@angular/material/chips';
+import { HotkeyModule } from 'angular2-hotkeys';
 
 
 import { EventDisplayComponent } from './event-display/event-display.component';
@@ -22,6 +23,7 @@ import { TagModule } from '../tag/tag.module';
     NbIconModule,
     NbButtonModule,
     MatChipsModule,
+    HotkeyModule,
 
 
     TagModule,

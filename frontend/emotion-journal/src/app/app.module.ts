@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NbLayoutModule, NbThemeModule, NbSidebarModule, NbDatepickerModule, NbThemeService,NbWindowModule,NbToastrModule } from '@nebular/theme';
+import { NbLayoutModule, NbThemeModule, NbSidebarModule, NbDatepickerModule, NbThemeService, NbWindowModule, NbToastrModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { HotkeyModule } from 'angular2-hotkeys';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,8 @@ import { TagCreateComponent } from '../tag/tag-create/tag-create.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+
+    HotkeyModule.forRoot(),
     NbThemeModule.forRoot(),
     NbSidebarModule.forRoot(),
     NbDatepickerModule.forRoot(),
@@ -43,6 +46,6 @@ import { TagCreateComponent } from '../tag/tag-create/tag-create.component';
 
   entryComponents: [
     TagCreateComponent,
- ]
+  ]
 })
 export class AppModule { }

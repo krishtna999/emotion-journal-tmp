@@ -1,10 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { NbWindowService, NbIconConfig, NbGlobalPhysicalPosition } from '@nebular/theme';
+import {
+  NbWindowService,
+  NbIconConfig,
+  NbGlobalPhysicalPosition,
+  NbToastrService
+} from '@nebular/theme';
+
 
 import { TagCreateComponent } from '../../tag/tag-create/tag-create.component';
+import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 
-import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-event-display',
@@ -14,16 +20,23 @@ import { NbToastrService } from '@nebular/theme';
 export class EventDisplayComponent implements OnInit {
   @Input() event: object;
   _editing = false;
-  _textAreaStatus='basic';
+  _textAreaStatus = 'basic';
 
-  constructor(private windowService: NbWindowService, private toastrService: NbToastrService) { }
+  constructor(private windowService: NbWindowService, private toastrService: NbToastrService, private _hotkeysService: HotkeysService) {
+
+    this._hotkeysService.add(new Hotkey('ctrl+alt+c', (event: KeyboardEvent): boolean => {
+      // This adds a shortcut to "tagSelectedText()"
+      this.tagSelectedText();
+      return false; // Prevent bubbling
+    }));
+  }
 
   makeEditable() {
     this._editing = true;
   }
 
-  saveLocalEvent(){
-    this._textAreaStatus='danger';
+  saveLocalEvent() {
+    this._textAreaStatus = 'danger';
     this._editing = false;
   }
 
@@ -33,7 +46,7 @@ export class EventDisplayComponent implements OnInit {
     this.event['text'] = this.event['text'].replace('\n', '');
     console.log(this.event['text']);
     this._editing = false;
-    this._textAreaStatus='basic';
+    this._textAreaStatus = 'basic';
   }
 
   tagSelectedText() {
@@ -47,9 +60,6 @@ export class EventDisplayComponent implements OnInit {
     }
 
 
-
-
-
     if (_selectionOptions['start_index'] == _selectionOptions['end_index']) {
 
       const iconConfig: NbIconConfig = { icon: 'text-outline', pack: 'eva' };
@@ -57,7 +67,7 @@ export class EventDisplayComponent implements OnInit {
       this.toastrService.show(
         'Please highlight some text to create a new event.',
         `No Highlight Found`, {
-          preventDuplicates: true,
+        preventDuplicates: true,
         // status: 'warning',
         position: NbGlobalPhysicalPosition.BOTTOM_LEFT, icon: iconConfig
       });
