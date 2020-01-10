@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { EventService } from '../event.service';
+
+import { EntryService } from '../../entry/entry.service';
 
 @Component({
   selector: 'app-event-create',
@@ -6,10 +10,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event-create.component.css']
 })
 export class EventCreateComponent implements OnInit {
-  text:string;
+  @Input() selected_date:Date;
+  text: string;
   _textAreaStatus = 'basic';
 
-  constructor() {
+  constructor(private eventService: EventService,private entryService:EntryService) {
   }
 
 
@@ -19,8 +24,13 @@ export class EventCreateComponent implements OnInit {
 
   // When we create a new Entry, we also create a new Event along with it.
   createEntry() {
+    console.log(this.selected_date);
     this._textAreaStatus = 'basic';
-    console.log(this.text);
+    this.eventService.create_event(
+      this.text,
+      this.selected_date
+    );
+    this.entryService.refreshEntry();
   }
 
   suppressNewLine(event) {

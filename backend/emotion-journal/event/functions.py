@@ -42,7 +42,7 @@ def transform_emotions(emotions):
 
 def tag_events(event,tags):
     for tag in tags:
-        Tag.objects.create(type=tag['type'],name=tag['name'],text=tag.get('text',None),event=event)
+        Tag.objects.create(type=tag['type'].upper(),name=tag['name'],text=tag.get('text',None),event=event)
     
     
 def copy_tags(event1,event2):

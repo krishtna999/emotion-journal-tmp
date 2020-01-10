@@ -17,7 +17,7 @@ class EventCreate(APIView):
 
             base_event = Event.objects.get(pk=data['base_event_id'])
             '''
-            start_index and end_index have to be the exact indices.
+            start_index and end_index as how one would use in string slice.
 
             TODO: Validate start and end indices boundary wrt string length.
             '''
@@ -25,11 +25,16 @@ class EventCreate(APIView):
             end_index = data['end_index']
             tags = data['tags']
 
+            print(data,len(base_event.text))
             og_text = base_event.text
             og_order_id = base_event.order_id
             og_entry = base_event.entry
 
-            if(start_index == 0 and end_index == len(base_event.text)-1):
+            if(
+                start_index == 0 and end_index == len(base_event.text)
+                or
+                start_index==end_index
+            ):
                 '''
                 Event will be as is. No split operations here, just tagging
                 '''
@@ -40,12 +45,12 @@ class EventCreate(APIView):
                 [FROM START, BEFORE END] Event will be split into 2 events, one additional at the end.
                 '''
 
-                base_event.text = og_text[start_index:end_index+1]
+                base_event.text = og_text[start_index:end_index]
                 base_event.order_id = og_order_id+'1'
                 base_event.save()
 
                 new_event = Event.objects.create(
-                    text=og_text[end_index+1:], order_id=og_order_id+'2', entry=og_entry)
+                    text=og_text[end_index:], order_id=og_order_id+'2', entry=og_entry)
                     
                 # Copy the old tags to the event that was split.
                 copy_tags(base_event, new_event)
@@ -53,7 +58,7 @@ class EventCreate(APIView):
                 # Add the new tags to the designated event (in this case, the base event itself)
                 tag_events(base_event, tags)    
 
-            elif(end_index == len(base_event.text)-1):
+            elif(end_index == len(base_event.text)):
                 '''
                 [AFTER START, TILL END]
                 Event will be split into 2 events, 1 additional. Existing base event will be modified.
@@ -82,10 +87,10 @@ class EventCreate(APIView):
                 base_event.save()
 
                 new_event_middle = Event.objects.create(
-                    text=og_text[start_index:end_index+1], order_id=og_order_id+'2',entry=og_entry)
+                    text=og_text[start_index:end_index], order_id=og_order_id+'2',entry=og_entry)
 
                 new_event_end = Event.objects.create(
-                    text=og_text[end_index+1:], order_id=og_order_id+'3',entry=og_entry)
+                    text=og_text[end_index:], order_id=og_order_id+'3',entry=og_entry)
 
                 # Copy the old tags to the event that was split.
                 copy_tags(base_event, new_event_middle)
@@ -102,6 +107,7 @@ class EventCreate(APIView):
 
 
 # NOTE: Filter is exclusive of end date
+# TODO: Add a custom delete logic for Event, if there are no events belonging to an entry after deletion, then delete the entry too !
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all().order_by('order_id')
     serializer_class = EventSerializer

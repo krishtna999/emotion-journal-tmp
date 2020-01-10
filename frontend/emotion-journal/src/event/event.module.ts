@@ -13,6 +13,8 @@ import { EventCreateComponent } from './event-create/event-create.component';
 
 
 import { TagModule } from '../tag/tag.module';
+import { SyncService } from '../app/sync.service';
+import { EntryService } from '../entry/entry.service';
 
 @NgModule({
   declarations: [EventDisplayComponent, EventCreateComponent],
@@ -34,5 +36,10 @@ import { TagModule } from '../tag/tag.module';
     EventDisplayComponent,
     EventCreateComponent,
   ],
+  providers:[
+    SyncService,
+    EntryService,
+    
+  ]
 })
 export class EventModule { }

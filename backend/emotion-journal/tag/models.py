@@ -8,7 +8,7 @@ class Tag(models.Model):
     Event Tags are models that are tied to an "Event"
     The `name` field should be unique amongst all tags in the Event
     '''
-    type=models.CharField(max_length=80,choices=EVENT_TAG_CHOICES,default="CUSTOM")
+    type=models.CharField(max_length=80,default="CUSTOM")
     name=models.CharField(max_length=80)
     # Text can be used like notes about the tag.
     text=models.TextField(blank=True, null=True)

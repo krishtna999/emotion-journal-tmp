@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +13,8 @@ import { NbButtonModule } from '@nebular/theme';
 import { TagDisplayComponent } from './tag-display/tag-display.component';
 import { TagCreateComponent } from './tag-create/tag-create.component';
 
-
+import { SyncService } from '../app/sync.service';
+import { EntryService } from '../entry/entry.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { TagCreateComponent } from './tag-create/tag-create.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
     MatChipsModule,
     MatIconModule,
     MatFormFieldModule,
@@ -37,6 +38,11 @@ import { TagCreateComponent } from './tag-create/tag-create.component';
   exports: [
     TagDisplayComponent,
     TagCreateComponent,
-  ]
+  ],
+
+  providers: [
+    SyncService,
+    EntryService,
+  ],
 })
 export class TagModule { }
