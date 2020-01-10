@@ -44,3 +44,10 @@ testem.log
 .DS_Store
 Thumbs.db
 !.gitkeep
+
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
