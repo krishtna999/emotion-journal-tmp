@@ -22,7 +22,7 @@ export class EntryDisplayComponent implements OnInit {
     // console.log(moment(this.selected_date).format('YYYY-MM-DD'));
     this.json = this.entryService.getEntryByDate(moment(this.selected_date).format('YYYY-MM-DD'));
     // this.json.subscribe(data => {
-    //   console.log(data[0]);
+    //   console.log(data);
     // }); 
   }
 

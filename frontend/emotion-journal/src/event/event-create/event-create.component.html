@@ -1,0 +1,12 @@
+<nb-card id=event_card status="{{_textAreaStatus}}">
+    <nb-card-header>
+        New Entry
+    </nb-card-header>
+    <nb-card-body id="event_text">
+        <form (keyup.enter)="createEntry()" (keydown.enter)="suppressNewLine($event)" (keydown.escape)="saveLocalEvent()">
+            <textarea rows="10" nbInput fullWidth wrap=hard shape="semi-round" [(ngModel)]="text"
+                name="event_text" status="{{_textAreaStatus}}">
+            </textarea>
+        </form>
+    </nb-card-body>
+</nb-card>

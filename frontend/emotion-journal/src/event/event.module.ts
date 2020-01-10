@@ -9,11 +9,13 @@ import { HotkeyModule } from 'angular2-hotkeys';
 
 
 import { EventDisplayComponent } from './event-display/event-display.component';
+import { EventCreateComponent } from './event-create/event-create.component';
+
 
 import { TagModule } from '../tag/tag.module';
 
 @NgModule({
-  declarations: [EventDisplayComponent],
+  declarations: [EventDisplayComponent, EventCreateComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -29,7 +31,8 @@ import { TagModule } from '../tag/tag.module';
     TagModule,
   ],
   exports: [
-    EventDisplayComponent
+    EventDisplayComponent,
+    EventCreateComponent,
   ],
 })
 export class EventModule { }

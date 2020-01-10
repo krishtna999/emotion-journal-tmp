@@ -41,7 +41,6 @@ export class EventDisplayComponent implements OnInit {
   }
 
   updateEvent() {
-    // TODO, handle escape key to save text locally but, enter key to save both locally and update at server.
     // Also change the nbModel bind to a form control type bind.
     this.event['text'] = this.event['text'].replace('\n', '');
     console.log(this.event['text']);
