@@ -16,8 +16,8 @@ class EntryCreate(APIView):
             data = request.data
             if('datetime' in data):
                 new_entry = Entry.objects.create(datetime=data['datetime'])
-
-            new_entry = Entry.objects.create()
+            else:
+                new_entry = Entry.objects.create()
             
             new_event = Event.objects.create(
                 text=data['text'], order_id=FIRST_EVENT_ORDER_ID, entry=new_entry)

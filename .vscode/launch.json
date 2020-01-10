@@ -8,7 +8,7 @@
             "name": "Python: Django",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/backend/emotional_journal/manage.py",
+            "program": "${workspaceFolder}/backend/emotion-journal/manage.py",
             "console": "integratedTerminal",
             "args": [
                 "runserver",
