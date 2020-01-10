@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventDisplayComponent } from './event-display.component';
+import { TagRudComponent } from './tag-rud.component';
 
-describe('EventDisplayComponent', () => {
-  let component: EventDisplayComponent;
-  let fixture: ComponentFixture<EventDisplayComponent>;
+describe('TagDisplayComponent', () => {
+  let component: TagRudComponent;
+  let fixture: ComponentFixture<TagRudComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventDisplayComponent ]
+      declarations: [ TagRudComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventDisplayComponent);
+    fixture = TestBed.createComponent(TagRudComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

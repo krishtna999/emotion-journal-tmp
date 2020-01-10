@@ -8,7 +8,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { HotkeyModule } from 'angular2-hotkeys';
 
 
-import { EventDisplayComponent } from './event-display/event-display.component';
+import { EventRudComponent } from './event-rud/event-rud.component';
 import { EventCreateComponent } from './event-create/event-create.component';
 
 
@@ -17,7 +17,7 @@ import { SyncService } from '../app/sync.service';
 import { EntryService } from '../entry/entry.service';
 
 @NgModule({
-  declarations: [EventDisplayComponent, EventCreateComponent],
+  declarations: [EventRudComponent, EventCreateComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -33,7 +33,7 @@ import { EntryService } from '../entry/entry.service';
     TagModule,
   ],
   exports: [
-    EventDisplayComponent,
+    EventRudComponent,
     EventCreateComponent,
   ],
   providers:[

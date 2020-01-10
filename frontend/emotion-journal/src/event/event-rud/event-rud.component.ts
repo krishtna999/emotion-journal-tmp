@@ -12,15 +12,14 @@ import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 import { EventService } from '../event.service';
 
 import { TagCreateComponent } from '../../tag/tag-create/tag-create.component';
-import { EntryService } from '../../entry/entry.service';
 
 
 @Component({
-  selector: 'app-event-display',
-  templateUrl: './event-display.component.html',
-  styleUrls: ['./event-display.component.css']
+  selector: 'app-event-rud',
+  templateUrl: './event-rud.component.html',
+  styleUrls: ['./event-rud.component.css']
 })
-export class EventDisplayComponent implements OnInit {
+export class EventRudComponent implements OnInit {
   @Input() event: object;
   _editing = false;
   _textAreaStatus = 'basic';

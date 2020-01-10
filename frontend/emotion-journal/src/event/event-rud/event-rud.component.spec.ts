@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EntryDisplayComponent } from './entry-display.component';
+import { EventRudComponent } from './event-rud.component';
 
-describe('EntryDisplayComponent', () => {
-  let component: EntryDisplayComponent;
-  let fixture: ComponentFixture<EntryDisplayComponent>;
+describe('EventDisplayComponent', () => {
+  let component: EventRudComponent;
+  let fixture: ComponentFixture<EventRudComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EntryDisplayComponent ]
+      declarations: [ EventRudComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EntryDisplayComponent);
+    fixture = TestBed.createComponent(EventRudComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

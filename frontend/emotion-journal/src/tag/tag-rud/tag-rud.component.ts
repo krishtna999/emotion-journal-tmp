@@ -3,11 +3,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TagService } from '../tag.service';
 
 @Component({
-  selector: 'app-tag-display',
-  templateUrl: './tag-display.component.html',
-  styleUrls: ['./tag-display.component.css']
+  selector: 'app-tag-rud',
+  templateUrl: './tag-rud.component.html',
+  styleUrls: ['./tag-rud.component.css']
 })
-export class TagDisplayComponent implements OnInit {
+export class TagRudComponent implements OnInit {
   deleted=false;
   @Input() tag: object;
   constructor(private tagService:TagService) { }

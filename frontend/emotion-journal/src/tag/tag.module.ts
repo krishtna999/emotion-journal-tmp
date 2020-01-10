@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NbButtonModule } from '@nebular/theme';
 
 
-import { TagDisplayComponent } from './tag-display/tag-display.component';
+import { TagRudComponent } from './tag-rud/tag-rud.component';
 import { TagCreateComponent } from './tag-create/tag-create.component';
 
 import { SyncService } from '../app/sync.service';
@@ -19,7 +19,7 @@ import { EntryService } from '../entry/entry.service';
 
 @NgModule({
   declarations: [
-    TagDisplayComponent,
+    TagRudComponent,
     TagCreateComponent,
   ],
   imports: [
@@ -36,7 +36,7 @@ import { EntryService } from '../entry/entry.service';
 
   ],
   exports: [
-    TagDisplayComponent,
+    TagRudComponent,
     TagCreateComponent,
   ],
 

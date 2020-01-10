@@ -14,7 +14,7 @@
         <div *ngFor="let entry of entries">
           <!-- TODO: Wrap each entry in a seperate card/div or smth -->
           <div *ngFor="let event of entry.events">
-            <app-event-display [event]="event"></app-event-display>
+            <app-event-rud [event]="event"></app-event-rud>
           </div>
         </div>
       </div>

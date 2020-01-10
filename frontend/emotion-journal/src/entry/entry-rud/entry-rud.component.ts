@@ -6,11 +6,11 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-entry-display',
-  templateUrl: './entry-display.component.html',
-  styleUrls: ['./entry-display.component.css']
+  selector: 'app-entry-rud',
+  templateUrl: './entry-rud.component.html',
+  styleUrls: ['./entry-rud.component.css']
 })
-export class EntryDisplayComponent implements OnInit {
+export class EntryRudComponent implements OnInit {
   subscription: Subscription;
   selected_date = new Date();
 

@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { NbLayoutModule, NbDatepickerModule, NbInputModule } from '@nebular/theme';
 
-import { EntryDisplayComponent } from './entry-display/entry-display.component';
+import { EntryRudComponent } from './entry-rud/entry-rud.component';
 
 import { SyncService } from '../app/sync.service';
 import { EventModule } from '../event/event.module';
 
 
 @NgModule({
-  declarations: [EntryDisplayComponent],
+  declarations: [EntryRudComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -23,7 +23,7 @@ import { EventModule } from '../event/event.module';
     EventModule,
   ],
   exports: [
-    EntryDisplayComponent,
+    EntryRudComponent,
 
   ],
   providers: [
