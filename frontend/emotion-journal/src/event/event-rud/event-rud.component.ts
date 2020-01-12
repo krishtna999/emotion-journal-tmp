@@ -53,13 +53,12 @@ export class EventRudComponent implements OnInit {
 
   tagSelectedText(event_id) {
     const selectedText = window.getSelection();
-
-    if (selectedText.rangeCount == 0) {
-      return false;
+    var selected_event_id=null;
+    
+    if(selectedText.anchorNode){
+      // data-evid => evid = EventId
+      selected_event_id = selectedText.anchorNode.parentElement.getAttribute('data-evid');
     }
-
-    // data-evid => evid = EventId
-    const selected_event_id = selectedText.anchorNode.parentElement.getAttribute('data-evid');
 
     // IF1: If the selected text belongs to the event component where the button was clicked
     // IF2: If the function was triggered via a shortcut
@@ -73,16 +72,16 @@ export class EventRudComponent implements OnInit {
         'end_index': selectedText.getRangeAt(0).endOffset,
         'event_id': parseInt(selected_event_id),
       }
-      console.log(selected_event_id);
       const windowRef = this.windowService.open(TagCreateComponent, { title: 'New Tag', context: _selectionOptions });
     }
-    else if (selected_event_id != event_id && selectedText.getRangeAt(0).startOffset == selectedText.getRangeAt(0).endOffset) {
+    else if (
+      (selected_event_id != event_id && selectedText.getRangeAt(0).startOffset == selectedText.getRangeAt(0).endOffset)
+    ) {
       let _selectionOptions = {
         'start_index': selectedText.getRangeAt(0).startOffset,
         'end_index': selectedText.getRangeAt(0).endOffset,
         'event_id': event_id,
       }
-      console.log(selected_event_id);
 
       const windowRef = this.windowService.open(TagCreateComponent, { title: 'New Tag', context: _selectionOptions });
     }
