@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NbButtonModule } from '@nebular/theme';
+import { NbButtonModule,NbTooltipModule } from '@nebular/theme';
 
 
 import { TagRudComponent } from './tag-rud/tag-rud.component';
@@ -33,6 +33,7 @@ import { EntryService } from '../entry/entry.service';
     MatInputModule,
     MatAutocompleteModule,
     NbButtonModule,
+    NbTooltipModule,
 
   ],
   exports: [

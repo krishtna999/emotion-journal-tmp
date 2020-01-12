@@ -1,7 +1,11 @@
 <!-- <p>tag-display works!</p> -->
-<div>
-    <mat-chip *ngIf="!deleted" [selectable]="selectable" (removed)="remove_tag()">
-        {{tag.name}}
-        <mat-icon matChipRemove>cancel</mat-icon>
+<div nbTooltip="{{tag.type|titlecase}}" nbTooltipPlacement="bottom">
+    <mat-chip *ngIf="!deleted" [selectable]="selectable" (removed)="remove_tag()"
+        [ngStyle]="{'border-style': is_emotion_tag?'solid':'none','border-width': '2px','border-color':emotion_color}">
+        <div id="tag_div">
+            <mat-icon inline=true> {{icon_type}}</mat-icon>
+            {{tag.name|titlecase}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+        </div>
     </mat-chip>
 </div>
