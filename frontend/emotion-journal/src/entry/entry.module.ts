@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NbLayoutModule, NbDatepickerModule, NbInputModule } from '@nebular/theme';
+import { NbLayoutModule, NbDatepickerModule, NbInputModule, NbCardModule } from '@nebular/theme';
 
 import { EntryRudComponent } from './entry-rud/entry-rud.component';
+import { EntryCreateComponent } from './entry-create/entry-create.component';
 
 import { SyncService } from '../app/sync.service';
 import { EventModule } from '../event/event.module';
 
 
 @NgModule({
-  declarations: [EntryRudComponent],
+  declarations: [EntryRudComponent, EntryCreateComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -19,6 +20,7 @@ import { EventModule } from '../event/event.module';
     NbLayoutModule,
     NbDatepickerModule,
     NbInputModule,
+    NbCardModule,
 
     EventModule,
   ],

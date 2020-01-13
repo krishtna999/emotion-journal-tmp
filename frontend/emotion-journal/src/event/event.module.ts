@@ -9,7 +9,6 @@ import { HotkeyModule } from 'angular2-hotkeys';
 
 
 import { EventRudComponent } from './event-rud/event-rud.component';
-import { EventCreateComponent } from './event-create/event-create.component';
 
 
 import { TagModule } from '../tag/tag.module';
@@ -17,7 +16,7 @@ import { SyncService } from '../app/sync.service';
 import { EntryService } from '../entry/entry.service';
 
 @NgModule({
-  declarations: [EventRudComponent, EventCreateComponent],
+  declarations: [EventRudComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -34,7 +33,6 @@ import { EntryService } from '../entry/entry.service';
   ],
   exports: [
     EventRudComponent,
-    EventCreateComponent,
   ],
   providers:[
     SyncService,

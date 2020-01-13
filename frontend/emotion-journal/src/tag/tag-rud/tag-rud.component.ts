@@ -37,6 +37,9 @@ export class TagRudComponent implements OnInit {
     
     this.is_emotion_tag=this.tag['type'].toLowerCase()=='emotion';
     this.emotion_color=constants.BASE_EMOTION_COLOR[constants.BOTTOM_LEVEL_EMOTIONS[this.tag['name'].toLowerCase()]];    
+    if(this.emotion_color==null){
+      this.emotion_color='beige';
+    }
   }
 
 }

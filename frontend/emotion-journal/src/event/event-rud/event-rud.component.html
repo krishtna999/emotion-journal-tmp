@@ -1,7 +1,7 @@
 <nb-card id=event_card accent="{{_textAreaStatus}}">
     <nb-card-body id="event_text" (dblclick)="makeEditable()">
         <span [attr.data-evid]="event.id" [hidden]="_editing">{{event.text}}</span>
-        <form (keyup.enter)="updateEvent()" (keydown.enter)="suppressNewLine($event)" (keydown.escape)="saveLocalEvent()" [hidden]="!_editing">
+        <form (keyup.enter)="updateEvent()" (keydown.enter)="suppressNewLine($event)" (keydown.escape)="saveEventLocally()" [hidden]="!_editing">
             <textarea rows="5" nbInput fullWidth wrap=hard shape="semi-round" [(ngModel)]="event.text"
                 name="event_text" status="{{_textAreaStatus}}">
                 </textarea>

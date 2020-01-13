@@ -37,7 +37,7 @@ export class EventRudComponent implements OnInit {
     this._editing = true;
   }
 
-  saveLocalEvent() {
+  saveEventLocally() {
     this._textAreaStatus = 'danger';
     this._editing = false;
   }

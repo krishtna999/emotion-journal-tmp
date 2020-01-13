@@ -1,24 +1,22 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { EventService } from '../event.service';
-
-import { EntryService } from '../../entry/entry.service';
+import { EntryService } from '../entry.service';
 
 @Component({
-  selector: 'app-event-create',
-  templateUrl: './event-create.component.html',
-  styleUrls: ['./event-create.component.css']
+  selector: 'app-entry-create',
+  templateUrl: './entry-create.component.html',
+  styleUrls: ['./entry-create.component.css']
 })
-export class EventCreateComponent implements OnInit {
+export class EntryCreateComponent implements OnInit {
   @Input() selected_date:Date;
   text: string;
   _textAreaStatus = 'basic';
 
-  constructor(private eventService: EventService,private entryService:EntryService) {
+  constructor(private entryService:EntryService) {
   }
 
 
-  saveLocalEvent() {
+  saveEventLocally() {
     this._textAreaStatus = 'danger';
   }
 
@@ -26,7 +24,7 @@ export class EventCreateComponent implements OnInit {
   createEntry() {
     console.log(this.selected_date);
     this._textAreaStatus = 'basic';
-    this.eventService.create_event(
+    this.entryService.create_entry(
       this.text,
       this.selected_date
     );
