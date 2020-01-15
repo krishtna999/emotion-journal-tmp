@@ -14,9 +14,10 @@ import { EventRudComponent } from './event-rud/event-rud.component';
 import { TagModule } from '../tag/tag.module';
 import { SyncService } from '../app/sync.service';
 import { EntryService } from '../entry/entry.service';
+import { EventFilterComponent } from './event-filter/event-filter.component';
 
 @NgModule({
-  declarations: [EventRudComponent],
+  declarations: [EventRudComponent, EventFilterComponent],
   imports: [
     CommonModule,
     FormsModule,
