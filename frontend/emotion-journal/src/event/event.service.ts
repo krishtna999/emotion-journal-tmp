@@ -11,7 +11,6 @@ export class EventService {
   constructor(private http:SyncService) { }
 
 
-
   update_event(id:number,text:string){
     const json_body={
       'text':text,
