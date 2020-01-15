@@ -1,9 +1,11 @@
 <nb-layout>
   <nb-layout-header fixed>
-  <div>  Emotional Journal</div>
+    <div> Emotional Journal</div>
   </nb-layout-header>
-  <nb-sidebar>Sidebar Content</nb-sidebar>
+  <nb-sidebar>
+    <app-pages></app-pages>
+  </nb-sidebar>
   <nb-layout-column>
-    <app-entry-rud></app-entry-rud>
+    <router-outlet></router-outlet>
   </nb-layout-column>
 </nb-layout>

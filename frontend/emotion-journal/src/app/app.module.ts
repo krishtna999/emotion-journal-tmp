@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NbLayoutModule, NbThemeModule, NbSidebarModule, NbDatepickerModule, NbThemeService, NbWindowModule, NbToastrModule } from '@nebular/theme';
+import { NbLayoutModule, NbThemeModule, NbSidebarModule, NbDatepickerModule, NbThemeService, NbWindowModule, NbToastrModule, NbMenuModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HotkeyModule } from 'angular2-hotkeys';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PagesComponent } from './pages/pages.component';
 
 import { EntryModule } from '../entry/entry.module';
 import { TagModule } from '../tag/tag.module';
@@ -17,7 +18,8 @@ import { TagCreateComponent } from '../tag/tag-create/tag-create.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { TagCreateComponent } from '../tag/tag-create/tag-create.component';
     NbLayoutModule,
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
+    NbMenuModule.forRoot(),
 
     EntryModule,
     TagModule,
