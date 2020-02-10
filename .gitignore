@@ -51,3 +51,6 @@ Thumbs.db
 *.pot
 *.pyc
 __pycache__/
+backend/emotion-journal/emotion_journal/__pycache__/__init__.cpython-36.pyc
+backend/emotion-journal/emotion_journal/__pycache__/settings.cpython-36.pyc
+backend/emotion-journal/emotion_journal/__pycache__/urls.cpython-36.pyc
