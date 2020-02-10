@@ -30,7 +30,6 @@ export class EntryService {
   }
 
   refreshEntry(){
-    setTimeout(() => { },1000);
     this.subject.next({text:'Re-query and refresh the entry component'})
   }
   

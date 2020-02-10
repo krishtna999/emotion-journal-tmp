@@ -27,7 +27,7 @@ export class TagService {
         },
       ]
     }
-    this.http.post(TAG_CREATE_URL, json_body).subscribe();
+    return this.http.post(TAG_CREATE_URL, json_body);
   }
 
   remove_tag(tag_id: number) {

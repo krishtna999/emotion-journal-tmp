@@ -87,7 +87,14 @@ export class TagCreateComponent implements OnInit {
     // console.log(this.nameControl.value);
 
     if (this.event_id) {
-      this.tagService.add_tag(this.event_id, this.start_index, this.end_index, this.typeControl.value, this.nameControl.value);
+      var add_tag_observable = this.tagService.add_tag(
+        this.event_id,
+        this.start_index,
+        this.end_index,
+        this.typeControl.value,
+        this.nameControl.value);
+      
+      add_tag_observable.subscribe();
       // Asking entry to re-update itself by hitting the backend once more for the latest events.
       this.entryService.refreshEntry();
     }
