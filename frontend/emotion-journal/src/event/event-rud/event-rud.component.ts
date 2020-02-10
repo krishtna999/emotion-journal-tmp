@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import {
-  NbWindowService,
   NbIconConfig,
   NbGlobalPhysicalPosition,
-  NbToastrService
+  NbToastrService,
 } from '@nebular/theme';
+import { MatDialog } from '@angular/material/dialog';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 
 
@@ -24,7 +24,11 @@ export class EventRudComponent implements OnInit {
   _editing = false;
   _textAreaStatus = 'basic';
 
-  constructor(private windowService: NbWindowService, private toastrService: NbToastrService, private _hotkeysService: HotkeysService, private eventService: EventService) {
+  constructor(
+    private dialog: MatDialog, 
+    private toastrService: NbToastrService, 
+    private _hotkeysService: HotkeysService, 
+    private eventService: EventService) {
 
     this._hotkeysService.add(new Hotkey('ctrl+alt+c', (event: KeyboardEvent): boolean => {
       // This adds a shortcut to "tagSelectedText()"
@@ -72,7 +76,7 @@ export class EventRudComponent implements OnInit {
         'end_index': selectedText.getRangeAt(0).endOffset,
         'event_id': parseInt(selected_event_id),
       }
-      const windowRef = this.windowService.open(TagCreateComponent, { title: 'New Tag', context: _selectionOptions });
+      const windowRef = this.dialog.open(TagCreateComponent, { data: _selectionOptions });
     }
     else if (
       (selected_event_id != event_id && selectedText.getRangeAt(0).startOffset == selectedText.getRangeAt(0).endOffset)
@@ -83,7 +87,7 @@ export class EventRudComponent implements OnInit {
         'event_id': event_id,
       }
 
-      const windowRef = this.windowService.open(TagCreateComponent, { title: 'New Tag', context: _selectionOptions });
+      const windowRef = this.dialog.open(TagCreateComponent, { data: _selectionOptions });
     }
 
     // Else only gets triggered if the text selected did not belong to the event whose add tag button was clicked (or it didn't belong to any event)
@@ -107,6 +111,12 @@ export class EventRudComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.dialog.closeAll();
   }
 
 }
