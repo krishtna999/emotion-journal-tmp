@@ -1,16 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { NbWindowRef } from '@nebular/theme';
+import { NbDialogRef } from '@nebular/theme';
 
 import { TagService } from '../tag.service';
 
 import { EntryService } from '../../entry/entry.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 // Refer Angular Material's AutoComplete documentation for more.
- 
+
 @Component({
   selector: 'app-tag-create',
   templateUrl: './tag-create.component.html',
@@ -38,7 +40,19 @@ export class TagCreateComponent implements OnInit {
   filtered_name_Options: Observable<string[]>;
 
 
-  constructor(private tagService:TagService,private entryService:EntryService,protected windowRef: NbWindowRef) { }
+  // TODO: Figure out a way to transfer window values to calling component without a service. 
+  constructor(
+    private tagService: TagService,
+    private entryService: EntryService,
+    public dialogRef: MatDialogRef<TagCreateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Object
+  ) {
+    if (this.data != null) {
+      this.start_index = this.data['start_index'];
+      this.end_index = this.data['end_index'];
+      this.event_id = this.data['event_id'];
+    }
+  }
 
   ngOnInit() {
     this.filtered_type_Options = this.typeControl.valueChanges
@@ -68,12 +82,17 @@ export class TagCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('passed:', this.start_index, '-', this.end_index, '\tid:', this.event_id);
-    console.log(this.typeControl.value);
-    console.log(this.nameControl.value);
-    this.tagService.add_tag(this.event_id,this.start_index,this.end_index,this.typeControl.value,this.nameControl.value);
-    this.entryService.refreshEntry();
-    this.windowRef.close();
+    // console.log('passed:', this.start_index, '-', this.end_index, '\tid:', this.event_id);
+    // console.log(this.typeControl.value);
+    // console.log(this.nameControl.value);
+
+    if (this.event_id) {
+      this.tagService.add_tag(this.event_id, this.start_index, this.end_index, this.typeControl.value, this.nameControl.value);
+      // Asking entry to re-update itself by hitting the backend once more for the latest events.
+      this.entryService.refreshEntry();
+    }
+    var tag = { 'name': this.nameControl.value, 'type': this.typeControl.value };
+    this.dialogRef.close(tag);
   }
 
 
