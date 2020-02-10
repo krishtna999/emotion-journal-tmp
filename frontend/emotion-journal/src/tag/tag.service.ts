@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { SyncService } from '../app/sync.service';
 
-const TAG_CREATE_URL='event/tag/';
+const TAG_CREATE_URL = 'event/tag/';
 
-const TAG_RUD_URL='tag/';
+const TAG_RUD_URL = 'tag/';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,6 @@ export class TagService {
     const json_body = {
       "base_event_id": base_event_id,
       "start_index": start_index,
-      // This -1 is very important, otherwise it will mess things up in the backend.
       "end_index": end_index,
       "tags": [
         {
@@ -28,12 +27,11 @@ export class TagService {
         },
       ]
     }
-    this.http.post(TAG_CREATE_URL,json_body).subscribe();
-
+    this.http.post(TAG_CREATE_URL, json_body).subscribe();
   }
 
-  remove_tag(tag_id:number){
-    this.http.delete(TAG_RUD_URL+tag_id.toString()+'/').subscribe();
+  remove_tag(tag_id: number) {
+    this.http.delete(TAG_RUD_URL + tag_id.toString() + '/').subscribe();
   }
 
 }

@@ -1,20 +1,21 @@
 <nb-card id=event_card accent="{{_textAreaStatus}}">
     <nb-card-body id="event_text" (dblclick)="makeEditable()">
         <span [attr.data-evid]="event.id" [hidden]="_editing">{{event.text}}</span>
-        <form (keyup.enter)="updateEvent()" (keydown.enter)="suppressNewLine($event)" (keydown.escape)="saveEventLocally()" [hidden]="!_editing">
-            <textarea rows="5" nbInput fullWidth wrap=hard shape="semi-round" [(ngModel)]="event.text"
-                name="event_text" status="{{_textAreaStatus}}">
+        <form (keyup.enter)="updateEvent()" (keydown.enter)="suppressNewLine($event)"
+            (keydown.escape)="saveEventLocally()" [hidden]="!_editing">
+            <textarea rows="5" nbInput fullWidth wrap=hard shape="semi-round" [(ngModel)]="event.text" name="event_text"
+                status="{{_textAreaStatus}}">
                 </textarea>
         </form>
     </nb-card-body>
     <nb-card-footer id="tag_footer">
         <span id="tag_list">
-        <mat-chip-list>
-            <ng-container *ngFor="let tag of event.tags">
-                <app-tag-rud [tag]="tag"></app-tag-rud>
-            </ng-container>
-        </mat-chip-list>
-    </span>
+            <mat-chip-list>
+                <ng-container *ngFor="let tag of event.tags">
+                    <app-tag-rud [tag]="tag"></app-tag-rud>
+                </ng-container>
+            </mat-chip-list>
+        </span>
         <button nbButton status="primary" id="add_tag_button" (click)="tagSelectedText(event.id)">
             <nb-icon icon="plus-circle-outline" id="add_tag_icon"></nb-icon>
         </button>
