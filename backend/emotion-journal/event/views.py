@@ -109,7 +109,7 @@ class EventCreate(APIView):
 # NOTE: Filter is exclusive of end date
 # TODO: Add a custom delete logic for Event, if there are no events belonging to an entry after deletion, then delete the entry too !
 class EventViewSet(viewsets.ModelViewSet):
-    queryset = Event.objects.all().order_by('order_id')
+    queryset = Event.objects.all().order_by('entry__datetime','order_id')
     serializer_class = EventSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = EventFilter
