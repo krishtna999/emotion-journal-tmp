@@ -1,0 +1,42 @@
+<nb-layout>
+    <nb-layout-column style="padding: 0px;">
+        <nb-card>
+            <nb-card-body>
+                <div class="date_range_div">
+                    <nb-radio-group id="date_select_options" [(ngModel)]="date_option">
+                        <nb-radio *ngFor="let option of options" [value]="option.value">
+                            {{ option.label }}
+                        </nb-radio>
+                    </nb-radio-group>
+                    <div *ngIf="isOneDate()||isRangeDate()" class="calendar_div">
+                        <input nbInput [placeholder]="isRangeDate()?'From':'On'" [nbDatepicker]="from_date"
+                            [(ngModel)]="date_from">
+                        <nb-datepicker #from_date></nb-datepicker>
+                    </div>
+                    <div *ngIf="isRangeDate()" class="calendar_div">
+                        <input nbInput placeholder="Till" [nbDatepicker]="to_date" [(ngModel)]="date_to">
+                        <nb-datepicker #to_date></nb-datepicker>
+                    </div>
+
+                </div>
+                <button nbButton id="search_options" status="primary" (click)="addTagFilter()">
+                    Add Tag Filter<nb-icon icon="plus-circle-outline" id="add_tag_icon"></nb-icon>
+                </button>
+
+                <button nbButton id="search_submit" status="primary" (click)="getFilteredQuery()">
+                    Search<nb-icon icon="search-outline"></nb-icon>
+                </button>
+
+                <div id="tag_list">
+                    <mat-chip-list>
+                        <ng-container *ngFor="let tag of tags">
+                            <app-tag-rud [tag]="tag"></app-tag-rud>
+                        </ng-container>
+                    </mat-chip-list>
+                </div>
+
+            </nb-card-body>
+
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>
