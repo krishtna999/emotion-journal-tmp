@@ -9,6 +9,7 @@ import { EntryCreateComponent } from './entry-create/entry-create.component';
 
 import { SyncService } from '../app/sync.service';
 import { EventModule } from '../event/event.module';
+import { TagCreateComponent } from 'src/tag/tag-create/tag-create.component';
 
 
 @NgModule({
@@ -30,6 +31,9 @@ import { EventModule } from '../event/event.module';
   ],
   providers: [
     SyncService,
+  ],
+  entryComponents:[
+    TagCreateComponent,
   ]
 })
 export class EntryModule { }
