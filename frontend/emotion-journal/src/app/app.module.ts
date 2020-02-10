@@ -2,7 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NbLayoutModule, NbThemeModule, NbSidebarModule, NbDatepickerModule, NbThemeService, NbWindowModule, NbToastrModule, NbMenuModule } from '@nebular/theme';
+import {
+  NbLayoutModule,
+  NbThemeModule,
+  NbSidebarModule,
+  NbDatepickerModule,
+  NbThemeService,
+  NbDialogModule,
+  NbToastrModule,
+  NbMenuModule,
+} from '@nebular/theme';
+
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HotkeyModule } from 'angular2-hotkeys';
 
@@ -14,7 +24,6 @@ import { EntryModule } from '../entry/entry.module';
 import { TagModule } from '../tag/tag.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { TagCreateComponent } from '../tag/tag-create/tag-create.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,7 @@ import { TagCreateComponent } from '../tag/tag-create/tag-create.component';
     NbDatepickerModule.forRoot(),
     NbEvaIconsModule,
     NbLayoutModule,
-    NbWindowModule.forRoot(),
+    NbDialogModule.forRoot(),
     NbToastrModule.forRoot(),
     NbMenuModule.forRoot(),
 
@@ -46,9 +55,5 @@ import { TagCreateComponent } from '../tag/tag-create/tag-create.component';
   ],
   providers: [NbThemeService,],
   bootstrap: [AppComponent],
-
-  entryComponents: [
-    TagCreateComponent,
-  ]
 })
 export class AppModule { }
