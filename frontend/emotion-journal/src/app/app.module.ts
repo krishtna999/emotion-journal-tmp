@@ -8,7 +8,6 @@ import {
   NbSidebarModule,
   NbDatepickerModule,
   NbThemeService,
-  NbDialogModule,
   NbToastrModule,
   NbMenuModule,
 } from '@nebular/theme';
@@ -42,7 +41,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NbDatepickerModule.forRoot(),
     NbEvaIconsModule,
     NbLayoutModule,
-    NbDialogModule.forRoot(),
     NbToastrModule.forRoot(),
     NbMenuModule.forRoot(),
 
