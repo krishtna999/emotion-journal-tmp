@@ -3,17 +3,17 @@
         <nb-card>
             <nb-card-body>
                 <div class="date_range_div">
-                    <nb-radio-group id="date_select_options" [(ngModel)]="date_option">
-                        <nb-radio *ngFor="let option of options" [value]="option.value">
-                            {{ option.label }}
-                        </nb-radio>
-                    </nb-radio-group>
-                    <div *ngIf="isOneDate()||isRangeDate()" class="calendar_div">
-                        <input nbInput [placeholder]="isRangeDate()?'From':'On'" [nbDatepicker]="from_date"
-                            [(ngModel)]="date_from">
-                        <nb-datepicker #from_date></nb-datepicker>
-                    </div>
+                    <nb-select [(ngModel)]="date_option">
+                        <nb-option *ngFor="let option of range_options" value="{{option.value}}">{{option.label}}
+                        </nb-option>
+                    </nb-select>
+
+
                     <div *ngIf="isRangeDate()" class="calendar_div">
+
+                        <input nbInput placeholder="From" [nbDatepicker]="from_date" [(ngModel)]="date_from">
+                        <nb-datepicker #from_date></nb-datepicker>
+
                         <input nbInput placeholder="Till" [nbDatepicker]="to_date" [(ngModel)]="date_to">
                         <nb-datepicker #to_date></nb-datepicker>
                     </div>
@@ -29,8 +29,8 @@
 
                 <div id="tag_list">
                     <mat-chip-list>
-                        <ng-container *ngFor="let tag of tags">
-                            <app-tag-rud [tag]="tag"></app-tag-rud>
+                        <ng-container *ngFor="let tag of tags; let i=index">
+                            <app-tag-rud [tag]="tag" [index]="i" (removeEvent)="removeEventHandler($event)"></app-tag-rud>
                         </ng-container>
                     </mat-chip-list>
                 </div>
@@ -38,5 +38,12 @@
             </nb-card-body>
 
         </nb-card>
+
+
+        <div *ngIf="events">
+            <div *ngFor="let event of events">
+                <app-event-rud [event]="event" [read_only]=true></app-event-rud>
+            </div>
+        </div>
     </nb-layout-column>
 </nb-layout>

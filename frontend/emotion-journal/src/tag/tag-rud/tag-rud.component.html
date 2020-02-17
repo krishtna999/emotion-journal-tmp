@@ -5,7 +5,7 @@
         <div id="tag_div">
             <mat-icon inline=true> {{icon_type}}</mat-icon>
             {{tag.name|titlecase}}
-            <mat-icon matChipRemove>cancel</mat-icon>
+            <mat-icon *ngIf="!read_only" matChipRemove>cancel</mat-icon>
         </div>
     </mat-chip>
 </div>

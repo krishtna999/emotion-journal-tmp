@@ -21,6 +21,7 @@ import { TagCreateComponent } from '../../tag/tag-create/tag-create.component';
 })
 export class EventRudComponent implements OnInit {
   @Input() event: object;
+  @Input() read_only: boolean;
   _editing = false;
   _textAreaStatus = 'basic';
 
@@ -38,7 +39,7 @@ export class EventRudComponent implements OnInit {
   }
 
   makeEditable() {
-    this._editing = true;
+    this._editing = true && !this.read_only;
   }
 
   saveEventLocally() {

@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { 
-  NbCardModule, 
-  NbInputModule, 
-  NbIconModule, 
+import {
+  NbCardModule,
+  NbInputModule,
+  NbIconModule,
   NbButtonModule,
-  NbRadioModule, 
+  NbRadioModule,
+  NbSelectModule,
   NbDatepickerModule,
   NbLayoutModule,
-  
+
 } from '@nebular/theme';
 
 import { MatChipsModule } from '@angular/material/chips';
@@ -28,7 +29,7 @@ import { EntryService } from '../entry/entry.service';
 import { TagCreateComponent } from 'src/tag/tag-create/tag-create.component';
 
 @NgModule({
-  declarations: [EventRudComponent, EventSearchComponent, ],
+  declarations: [EventRudComponent, EventSearchComponent,],
   imports: [
     CommonModule,
     FormsModule,
@@ -40,6 +41,8 @@ import { TagCreateComponent } from 'src/tag/tag-create/tag-create.component';
     NbButtonModule,
     NbRadioModule,
     NbDatepickerModule,
+    NbSelectModule,
+
     MatChipsModule,
     MatDialogModule,
     HotkeyModule,
@@ -50,13 +53,13 @@ import { TagCreateComponent } from 'src/tag/tag-create/tag-create.component';
     EventRudComponent,
     EventSearchComponent,
   ],
-  providers:[
+  providers: [
     SyncService,
     EntryService,
-    
+
   ],
 
-  entryComponents:[
+  entryComponents: [
     TagCreateComponent
   ]
 })
