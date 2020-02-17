@@ -34,7 +34,7 @@ export class TagCreateComponent implements OnInit {
 
 
   // TODO: add more options
-  type_opt: string[] = ['Emotion', 'Person', 'Custom'];
+  type_opt: string[] = [];
   name_opt: string[] = ['Happy', 'Sad', 'Placeholder'];
   filtered_type_Options: Observable<string[]>;
   filtered_name_Options: Observable<string[]>;
@@ -55,19 +55,52 @@ export class TagCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filtered_type_Options = this.typeControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter_type(value))
-      );
+    this.tagService.get_autofill_data('type',null).subscribe(
+      data=>{
+        this.type_opt=data['values'];
+        this.filtered_type_Options = this.typeControl.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => {
+            const filterValue = value.toLowerCase();
+  
+            return this.type_opt.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+          })
+        );
+      }
+    );
 
-    this.filtered_name_Options = this.nameControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter_name(value))
-      );
-    // console.log('passed:',this._selectedText);
   }
+
+  focusOutType(){
+    /* focusOutType will be called when the "type" field textbox goes out of focus
+        If it goes out of focus, it can mean one of 2 things.
+        1. The user has clicked on an autofill recommendation
+        2. The user has finished entering the input and has moved on to the next field.
+        Hence, on both cases the user has decided on a final input.
+        
+        This means we can go ahead and proceed to get values for the "name" field
+    */
+    this.tagService.get_autofill_data('name',this.typeControl.value).subscribe(
+      data=>{
+        this.name_opt=data['values'];
+        this.filtered_name_Options = this.nameControl.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => {
+            const filterValue = value.toLowerCase();
+
+            return this.name_opt.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+          })
+        );
+
+      }
+    );
+  }
+
+
+  /*
+  Functions were removed in order to achieve sync.
 
   private _filter_type(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -81,10 +114,9 @@ export class TagCreateComponent implements OnInit {
     return this.name_opt.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 
+  */
+
   onSubmit() {
-    // console.log('passed:', this.start_index, '-', this.end_index, '\tid:', this.event_id);
-    // console.log(this.typeControl.value);
-    // console.log(this.nameControl.value);
 
     if (this.event_id) {
       var add_tag_observable = this.tagService.add_tag(

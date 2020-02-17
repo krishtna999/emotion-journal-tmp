@@ -1,6 +1,6 @@
 <form [formGroup]="tagForm" (ngSubmit)="onSubmit()" ngNativeValidate> 
     <mat-form-field class="tag-input-field">
-      <input type="text" placeholder="Tag Type" aria-label="Tag Type" matInput formControlName="typeControl" [matAutocomplete]="type" required>
+      <input type="text" (focusout)="focusOutType()" placeholder="Tag Type" aria-label="Tag Type" matInput formControlName="typeControl" [matAutocomplete]="type" required>
       <mat-autocomplete #type="matAutocomplete" autoActiveFirstOption>
         <mat-option *ngFor="let option of filtered_type_Options | async" [value]="option">
           {{option}}

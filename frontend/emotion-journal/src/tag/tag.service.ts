@@ -6,6 +6,9 @@ const TAG_CREATE_URL = 'event/tag/';
 
 const TAG_RUD_URL = 'tag/';
 
+const TAG_AUTOFILL_URL = TAG_RUD_URL+'autofill/';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +35,17 @@ export class TagService {
 
   remove_tag(tag_id: number) {
     this.http.delete(TAG_RUD_URL + tag_id.toString() + '/').subscribe();
+  }
+
+  get_autofill_data(field:string,type:string){
+    var params={
+      'field':field
+    }
+    
+    if(type){
+      params['type']=type;
+    }
+    return this.http.get(TAG_AUTOFILL_URL,params);
   }
 
 }
