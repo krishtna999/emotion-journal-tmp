@@ -3,8 +3,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { NbDialogRef } from '@nebular/theme';
-
 import { TagService } from '../tag.service';
 
 import { EntryService } from '../../entry/entry.service';
@@ -35,7 +33,7 @@ export class TagCreateComponent implements OnInit {
 
   // TODO: add more options
   type_opt: string[] = [];
-  name_opt: string[] = ['Happy', 'Sad', 'Placeholder'];
+  name_opt: string[] = [];
   filtered_type_Options: Observable<string[]>;
   filtered_name_Options: Observable<string[]>;
 

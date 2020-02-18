@@ -26,9 +26,9 @@ export class EventRudComponent implements OnInit {
   _textAreaStatus = 'basic';
 
   constructor(
-    private dialog: MatDialog, 
-    private toastrService: NbToastrService, 
-    private _hotkeysService: HotkeysService, 
+    private dialog: MatDialog,
+    private toastrService: NbToastrService,
+    private _hotkeysService: HotkeysService,
     private eventService: EventService) {
 
     this._hotkeysService.add(new Hotkey('ctrl+alt+c', (event: KeyboardEvent): boolean => {
@@ -58,15 +58,17 @@ export class EventRudComponent implements OnInit {
 
   tagSelectedText(event_id) {
     const selectedText = window.getSelection();
-    var selected_event_id=null;
-    
-    if(selectedText.anchorNode){
+    var selected_event_id = null;
+
+    if (selectedText.anchorNode) {
       // data-evid => evid = EventId
       selected_event_id = selectedText.anchorNode.parentElement.getAttribute('data-evid');
     }
 
-    // IF1: If the selected text belongs to the event component where the button was clicked
-    // IF2: If the function was triggered via a shortcut
+    console.log(event_id, selected_event_id, selectedText);
+
+    // Condition1: If the selected text belongs to the event component where the button was clicked
+    // Condition2: If the function was triggered via a shortcut
     if ((event_id != null && selected_event_id != null && selected_event_id == event_id)
       ||
       (event_id == null && selected_event_id != null)
@@ -80,14 +82,14 @@ export class EventRudComponent implements OnInit {
       const windowRef = this.dialog.open(TagCreateComponent, { data: _selectionOptions });
     }
     else if (
-      (selected_event_id != event_id && selectedText.getRangeAt(0).startOffset == selectedText.getRangeAt(0).endOffset)
+      (selected_event_id==null
+        ||
+      selected_event_id != event_id && selectedText.getRangeAt(0).startOffset == selectedText.getRangeAt(0).endOffset
+      )
     ) {
       let _selectionOptions = {
-        'start_index': selectedText.getRangeAt(0).startOffset,
-        'end_index': selectedText.getRangeAt(0).endOffset,
         'event_id': event_id,
       }
-
       const windowRef = this.dialog.open(TagCreateComponent, { data: _selectionOptions });
     }
 
