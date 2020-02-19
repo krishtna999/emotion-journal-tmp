@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, viewsets
+from rest_framework import status, viewsets, generics
 from django_filters import rest_framework as filters
 
 from .models import Event
@@ -117,3 +117,19 @@ class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = EventFilter
+
+
+class EventAnalyticsViewSet(generics.ListAPIView):
+    queryset = Event.objects.all().order_by('entry__datetime', 'order_id')
+    serializer_class = EventSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = EventFilter
+    # Override finalize_response
+
+    def list(self, request, *args, **kwargs):
+        # The first line is taken directly from the list function source.
+        queryset = self.filter_queryset(self.get_queryset())
+        # The pagination part in the source is excluded as we only require the count() value.
+        count_data={'count':queryset.count()}
+
+        return Response(data=count_data, status=status.HTTP_200_OK)

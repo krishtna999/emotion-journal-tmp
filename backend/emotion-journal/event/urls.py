@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.EventViewSet.as_view({'get': 'list'})),
     path('<int:pk>/', views.EventViewSet.as_view(
         {'get': 'retrieve', 'patch': 'partial_update', 'delete': 'destroy'})),
+    path('analytics/',views.EventAnalyticsViewSet.as_view()),
 ]
