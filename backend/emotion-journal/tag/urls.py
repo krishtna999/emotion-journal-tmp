@@ -9,7 +9,7 @@ router.register('',views.TagViewSet)
 # print(router.urls)
 
 urlpatterns=[
-    path('autofill/',views.GetAutoFill.as_view())
+    path('autofill/',views.TagValuesView.as_view())
 ]
 
 urlpatterns+=router.urls

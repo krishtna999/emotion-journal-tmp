@@ -15,7 +15,7 @@ class TagViewSet(viewsets.ModelViewSet):
     filterset_class = TagFilter
 
 
-class GetAutoFill(APIView):
+class TagValuesView(APIView):
     def get(self, request):
         autofill_field = request.query_params.get('field')
         field_type = request.query_params.get('type')
