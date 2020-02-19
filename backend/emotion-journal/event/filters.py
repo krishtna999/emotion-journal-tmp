@@ -25,9 +25,8 @@ class EventFilter(django_filters.FilterSet):
                 tagType = tag.split(':')[0].lower()
                 tagName = tag.split(':')[1].lower()
 
-                print(tagType,tagName)
-                qs = queryset.filter(tags__type=tagType,
-                                     tags__name=tagName) & qs
+                qs = qs.filter(tags__type=tagType,
+                                     tags__name=tagName)
 
         return qs.distinct()
 
