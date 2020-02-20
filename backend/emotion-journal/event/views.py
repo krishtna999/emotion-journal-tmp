@@ -130,6 +130,18 @@ class EventAnalyticsViewSet(generics.ListAPIView):
         # The first line is taken directly from the list function source.
         queryset = self.filter_queryset(self.get_queryset())
         # The pagination part in the source is excluded as we only require the count() value.
-        count_data={'count':queryset.count()}
+
+        analytics_tag_type = request.query_params.get('analytics_tag_type')
+
+        count_data = {}
+        if(analytics_tag_type):
+            # Find the ratio of primary tags.
+            for event in queryset:
+                for tag in event.tags.filter(type=analytics_tag_type):
+                    count_data[tag.name] = count_data.get(tag.name, 0)+1
+
+        else:
+            # Simply just the count of the queryset
+            count_data = {'count': queryset.count()}
 
         return Response(data=count_data, status=status.HTTP_200_OK)
