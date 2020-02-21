@@ -1,10 +1,4 @@
-import { NbMenuItem } from '@nebular/theme';
-
-export const MENU_ITEMS: NbMenuItem[] = [
-    {
-        title: 'Navigation',
-        group: true,
-    },
+export const MENU_ITEMS = [
     {
         title: 'Diary',
         icon: 'book-outline',

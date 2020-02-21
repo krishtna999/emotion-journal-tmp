@@ -9,8 +9,9 @@ import {
   NbDatepickerModule,
   NbThemeService,
   NbToastrModule,
-  NbMenuModule,
 } from '@nebular/theme';
+
+import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
 
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HotkeyModule } from 'angular2-hotkeys';
@@ -36,13 +37,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
 
     HotkeyModule.forRoot(),
+
     NbThemeModule.forRoot(),
     NbSidebarModule.forRoot(),
     NbDatepickerModule.forRoot(),
     NbEvaIconsModule,
     NbLayoutModule,
     NbToastrModule.forRoot(),
-    NbMenuModule.forRoot(),
+    
+    MatToolbarModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
 
     EntryModule,
     TagModule,

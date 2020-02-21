@@ -11,6 +11,7 @@ import {
   NbSelectModule,
   NbDatepickerModule,
   NbLayoutModule,
+  NbSidebarModule,
 
 } from '@nebular/theme';
 
@@ -35,6 +36,7 @@ import { TagCreateComponent } from 'src/tag/tag-create/tag-create.component';
     FormsModule,
 
     NbLayoutModule,
+    NbSidebarModule,
     NbCardModule,
     NbInputModule,
     NbIconModule,

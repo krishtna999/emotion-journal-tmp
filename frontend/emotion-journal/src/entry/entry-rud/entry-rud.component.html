@@ -1,29 +1,31 @@
 <nb-layout>
-  <nb-layout-header>
-    <!-- TODO: Add New Entry button as you can have multiple entries per day ! -->
-    <input nbInput placeholder="Pick Date" [nbDatepicker]="picker" [(ngModel)]="selected_date"
-      (ngModelChange)="getEntryByDate()">
-    <nb-datepicker #picker></nb-datepicker>
-  </nb-layout-header>
-
   <nb-layout-column>
 
-    <div *ngIf="json|async as entries">
+    <div class="wrapper">
+      <div class="sidebar">
+        <nb-calendar [date]="selected_date" (dateChange)="getEntryByDate($event)"></nb-calendar>
 
-      <div *ngIf="entries.length>0; else newEvent">
-        <div *ngFor="let entry of entries">
-          <!-- TODO: Wrap each entry in a seperate card/div or smth -->
-          <div *ngFor="let event of entry.events">
-            <app-event-rud [event]="event"></app-event-rud>
+      </div>
+      <div class="main">
+
+        <div *ngIf="json|async as entries">
+
+          <div *ngIf="entries.length>0; else newEvent">
+            <div *ngFor="let entry of entries">
+              <!-- TODO: Wrap each entry in a seperate card/div or smth -->
+              <div *ngFor="let event of entry.events">
+                <app-event-rud [event]="event"></app-event-rud>
+              </div>
+            </div>
           </div>
+
+
+          <ng-template #newEvent>
+            <app-entry-create [selected_date]="selected_date"></app-entry-create>
+          </ng-template>
+
         </div>
       </div>
-
-
-      <ng-template #newEvent>
-        <app-entry-create [selected_date]="selected_date"></app-entry-create>
-      </ng-template>
-
     </div>
   </nb-layout-column>
 </nb-layout>

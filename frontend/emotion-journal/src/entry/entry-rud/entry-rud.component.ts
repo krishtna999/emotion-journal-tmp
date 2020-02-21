@@ -24,8 +24,10 @@ export class EntryRudComponent implements OnInit {
   json;
 
 
-  getEntryByDate() {
-
+  getEntryByDate(event=null) {
+    if(event){
+      this.selected_date=event;
+    }
     // const utc_date = this.selected_date.toUTCString();
     this.json = this.entryService.getEntryByDate(moment(this.selected_date).format('YYYY-MM-DD'));
     // this.json.subscribe(data => {

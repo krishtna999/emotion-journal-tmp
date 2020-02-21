@@ -6,7 +6,7 @@ import { MENU_ITEMS } from './pages-menu';
   selector: 'app-pages',
   styleUrls: ['pages.component.scss'],
   template: `
-      <nb-menu [items]="menu"></nb-menu>
+      <span *ngFor="let item of menu"><button routerLink="{{item.link}}" mat-button >{{item.title}}</button></span>
   `,
 })
 export class PagesComponent {

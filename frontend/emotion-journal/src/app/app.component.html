@@ -1,10 +1,21 @@
 <nb-layout>
   <nb-layout-header fixed>
-    <div> Emotional Journal</div>
+    <mat-toolbar>
+      <span>Emotional Journal</span>
+
+      <span class="fill-remaining-space"></span>
+
+
+      <app-pages></app-pages>
+      <button mat-button [matMenuTriggerFor]="menu">  <mat-icon>more_vert</mat-icon></button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>About Us</button>
+        <button mat-menu-item>Logout</button>
+      </mat-menu>
+
+    </mat-toolbar>
   </nb-layout-header>
-  <nb-sidebar>
-    <app-pages></app-pages>
-  </nb-sidebar>
+
   <nb-layout-column>
     <router-outlet></router-outlet>
   </nb-layout-column>
