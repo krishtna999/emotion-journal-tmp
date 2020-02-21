@@ -1,5 +1,5 @@
 <nb-card id=event_card accent="{{_textAreaStatus}}">
-    <nb-card-header *ngIf="event.date">{{event.date}}</nb-card-header>
+    <nb-card-header *ngIf="read_only">{{event.date}}</nb-card-header>
     <nb-card-body id="event_text" (dblclick)="makeEditable()">
         <span [attr.data-evid]="event.id" [hidden]="_editing">{{event.text}}</span>
         <form (keyup.enter)="updateEvent()" (keydown.enter)="suppressNewLine($event)"
