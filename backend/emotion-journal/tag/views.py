@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 from django_filters import rest_framework as filters
+from urllib import parse
 
 from .models import Tag
 from .serializers import TagSerializer
@@ -24,11 +25,19 @@ class TagValuesView(APIView):
                              'message': 'Autofill only for tag name or tag type'},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        print(field_type,autofill_field)
-        
+        print(field_type, autofill_field)
+
         if(field_type):
-            values = Tag.objects.filter(type=field_type).values_list(autofill_field, flat=True).distinct()
+            '''
+            NOTE: The string "field_type" is an encrypted one. 
+            It contains special symbols which are also used in the GET url parameters.
+            Hence it encoded using encodeURIComponent() in the frontend.
+            Thus, we use parse.unquote() to decode the "field_type".
+            '''
+            values = Tag.objects.filter(type=parse.unquote(field_type))     \
+                .values_list(autofill_field, flat=True).distinct()
         else:
-            values = Tag.objects.values_list(autofill_field, flat=True).distinct()
-                
+            values = Tag.objects.values_list(
+                autofill_field, flat=True).distinct()
+
         return Response({'status': True, 'values': values}, status=status.HTTP_200_OK)

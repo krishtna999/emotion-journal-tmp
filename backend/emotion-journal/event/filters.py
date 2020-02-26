@@ -1,6 +1,7 @@
 import django_filters
 from .models import Event
 from .functions import transform_emotions
+from urllib import parse
 
 
 class EventFilter(django_filters.FilterSet):
@@ -22,8 +23,9 @@ class EventFilter(django_filters.FilterSet):
             tags = args[0].split(',')
             qs = Event.objects.all()
             for tag in tags:
-                tagType = tag.split(':')[0].lower()
-                tagName = tag.split(':')[1].lower()
+                # NOTE: Check the comment under TagValuesView in Tag.views
+                tagType = parse.unquote(tag.split(':')[0])
+                tagName = parse.unquote(tag.split(':')[1])
 
                 qs = qs.filter(tags__type=tagType,
                                      tags__name=tagName)
