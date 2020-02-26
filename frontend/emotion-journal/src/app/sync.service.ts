@@ -2,13 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
+// import { constants } from "./encryption/constants";
+
+import * as CryptoJS from 'crypto-js';
+
 
 const BASE_URL = 'http://localhost:8000/api/';
+
+const key = 'testing_key';
+var iv = CryptoJS.enc.Hex.parse(CryptoJS.SHA512(key));
 @Injectable({
   providedIn: 'root'
 })
 export class SyncService {
-  token:null;
+  token: null;
   private handleError<T>(result: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -58,4 +65,16 @@ export class SyncService {
       );
   }
 
+  encrypt(plain_text: string, make_lower = false) {
+    if (make_lower) {
+      plain_text = plain_text.toLowerCase();
+    }
+    return CryptoJS.AES.encrypt(plain_text, CryptoJS.SHA512(key), { iv: iv }).toString();
+  }
+
+  decrypt(cipher_text) {
+    console.log(cipher_text);
+    console.log(CryptoJS.AES.decrypt(cipher_text, CryptoJS.SHA512(key), { iv: iv }).toString(CryptoJS.enc.Utf8));
+    return CryptoJS.AES.decrypt(cipher_text, CryptoJS.SHA512(key), { iv: iv }).toString(CryptoJS.enc.Utf8);
+  }
 }

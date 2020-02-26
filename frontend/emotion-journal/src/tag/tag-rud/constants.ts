@@ -4,6 +4,7 @@ export class constants {
     // Material icons
     'emotion':'sentiment_very_satisfied',
     'person':'person',
+    'place':'place',
     'custom':'label_important'
   }
 

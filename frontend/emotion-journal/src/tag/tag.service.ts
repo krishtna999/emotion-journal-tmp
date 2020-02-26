@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { SyncService } from '../app/sync.service';
+import { map } from 'rxjs/operators';
 
 const TAG_CREATE_URL = 'event/tag/';
 
 const TAG_RUD_URL = 'tag/';
 
-const TAG_AUTOFILL_URL = TAG_RUD_URL+'autofill/';
+const TAG_AUTOFILL_URL = TAG_RUD_URL + 'autofill/';
 
 
 @Injectable({
@@ -23,10 +24,10 @@ export class TagService {
       "end_index": end_index,
       "tags": [
         {
-          "type": tag_type,
-          "name": tag_name,
-          // TODO: Add provision for note
-          // "note": ""
+          "type": this.http.encrypt(tag_type,true),
+          "name": this.http.encrypt(tag_name,true),
+          // TODO: Add provision for text. Which acts like a note to a tag
+          // "text": ""
         },
       ]
     }
@@ -37,20 +38,40 @@ export class TagService {
     this.http.delete(TAG_RUD_URL + tag_id.toString() + '/').subscribe();
   }
 
-  get_autofill_data(field:string,type:string){
-    var params={
-      'field':field
+  get_autofill_data(field: string, type: string) {
+    var params = {
+      'field': field
     }
-    
-    if(type){
-      params['type']=type;
+
+    if (type) {
+      console.log(type);
+      /* 
+        encodeURIComponent is used to encode the ENCRYPTED STRINGS (which contain reserved characters)
+        so that they can be passed on as GET parameters without deformation.
+
+      */
+      params['type'] = encodeURIComponent(this.http.encrypt(type,true));
     }
-    return this.http.get(TAG_AUTOFILL_URL,params);
+    return this.http.get(TAG_AUTOFILL_URL, params)
+      .pipe(
+        map(json => {
+          for(var i=0;i<json['values'].length;i++){
+            console.log(json['values'][i]);
+            json['values'][i]=this.http.decrypt(json['values'][i]);
+          }
+
+          return json;
+        }
+        )
+      );
+
   }
 
 }
 
 /*
+
+ADD_TAG OUTGOING JSON
 {
     "base_event_id": 1,
     "start_index": 193,
@@ -68,4 +89,22 @@ export class TagService {
     ]
 }
 
+
+INCOMING AUTOFILL JSON:
+{
+    "status": true,
+    "values": [
+        "alive",
+        "angry",
+        "calm",
+        "happy",
+        "happyzs",
+        "lol",
+        "nice",
+        "placeholder",
+        "sad",
+        "sads",
+        "test_emotion"
+    ]
+  }
 */

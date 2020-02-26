@@ -24,10 +24,12 @@ export class EntryCreateComponent implements OnInit {
   createEntry() {
     console.log(this.selected_date);
     this._textAreaStatus = 'basic';
-    this.entryService.create_entry(
+    var create_entry_observable=this.entryService.create_entry(
       this.text,
       this.selected_date
     );
+
+    create_entry_observable.subscribe();
     this.entryService.refreshEntry();
   }
 
