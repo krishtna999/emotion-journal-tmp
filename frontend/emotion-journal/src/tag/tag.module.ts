@@ -15,12 +15,16 @@ import { TagCreateComponent } from './tag-create/tag-create.component';
 
 import { SyncService } from '../app/sync.service';
 import { EntryService } from '../entry/entry.service';
+import { TagTypeAutocompleteComponent } from './tag-type-autocomplete/tag-type-autocomplete.component';
+import { TagNameAutocompleteComponent } from './tag-name-autocomplete/tag-name-autocomplete.component';
 
 
 @NgModule({
   declarations: [
     TagRudComponent,
     TagCreateComponent,
+    TagTypeAutocompleteComponent,
+    TagNameAutocompleteComponent,
   ],
   imports: [
     CommonModule,
