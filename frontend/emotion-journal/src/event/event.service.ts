@@ -49,8 +49,8 @@ export class EventService {
     return this.http.get(EVENT_FILTER_URL,params)
     .pipe(
       map(
-        json =>{
-          for(var i=0;i<Array(json).length;i++){
+        (json:Array<any>) =>{
+          for(var i=0;i<json.length;i++){
             json[i]['text']=this.http.decrypt(json[i]['text']);
             for(var j=0;j<json[i]['tags'].length;j++){
 
