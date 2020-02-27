@@ -56,7 +56,6 @@ export class TagService {
       .pipe(
         map(json => {
           for(var i=0;i<json['values'].length;i++){
-            console.log(json['values'][i]);
             json['values'][i]=this.http.decrypt(json['values'][i]);
           }
 

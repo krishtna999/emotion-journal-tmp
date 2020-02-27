@@ -73,8 +73,8 @@ export class SyncService {
   }
 
   decrypt(cipher_text) {
-    console.log(cipher_text);
-    console.log(CryptoJS.AES.decrypt(cipher_text, CryptoJS.SHA512(key), { iv: iv }).toString(CryptoJS.enc.Utf8));
+    // console.log(cipher_text);
+    // console.log(CryptoJS.AES.decrypt(cipher_text, CryptoJS.SHA512(key), { iv: iv }).toString(CryptoJS.enc.Utf8));
     return CryptoJS.AES.decrypt(cipher_text, CryptoJS.SHA512(key), { iv: iv }).toString(CryptoJS.enc.Utf8);
   }
 }
