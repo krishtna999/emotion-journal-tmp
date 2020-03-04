@@ -1,21 +1,10 @@
-<form [formGroup]="tagForm" (ngSubmit)="onSubmit()" ngNativeValidate> 
-    <mat-form-field class="tag-input-field">
-      <input type="text" (focusout)="focusOutType()" placeholder="Tag Type" aria-label="Tag Type" matInput formControlName="typeControl" [matAutocomplete]="type" required>
-      <mat-autocomplete #type="matAutocomplete" autoActiveFirstOption>
-        <mat-option *ngFor="let option of filtered_type_Options | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-    <mat-form-field class="tag-input-field">
-      <input type="text" placeholder="Tag Name" aria-label="Tag Name" matInput formControlName="nameControl" [matAutocomplete]="name" required>
-      <mat-autocomplete #name="matAutocomplete" autoActiveFirstOption>
-        <mat-option *ngFor="let option of filtered_name_Options | async" [value]="option">
-          {{option}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <app-tag-type-autocomplete [(tagType)]="tagType"></app-tag-type-autocomplete>
+  </div>
+  <div>
+    <app-tag-name-autocomplete [(tagName)]="tagName" [tagType]="tagType"></app-tag-name-autocomplete>
+  </div>
 
-  <button type="submit" nbButton shape="semi-round" status="info" [disabled]="!tagForm.valid">Submit</button>
-  </form>
-
+  <button type="submit" nbButton shape="semi-round" status="info" [disabled]="isDisabled()">Submit</button>
+</form>
