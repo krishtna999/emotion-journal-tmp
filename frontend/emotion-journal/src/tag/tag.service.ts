@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import {  NbToastrService } from '@nebular/theme';
 import { SyncService } from '../app/sync.service';
 import { map } from 'rxjs/operators';
 
@@ -15,7 +16,7 @@ const TAG_AUTOFILL_URL = TAG_RUD_URL + 'autofill/';
 })
 export class TagService {
 
-  constructor(private http: SyncService) { }
+  constructor(private http: SyncService,private toastrService: NbToastrService,) { }
 
   add_tag(event: object, start_index: number, end_index: number, tag_type: string, tag_name: string) {
 
@@ -31,6 +32,10 @@ export class TagService {
     */
     if (start_index < 0 || og_text.length < end_index) {
       //  TODO: Display error toastr
+      this.toastrService.show(
+        'Indexes are out of bounds',
+        'Bad Highlight'
+      );
       return null;
     }
     const json = {

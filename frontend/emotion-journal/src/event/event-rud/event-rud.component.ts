@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import {
-  NbToastrService,
-} from '@nebular/theme';
+import {  NbToastrService } from '@nebular/theme';
 import { MatDialog } from '@angular/material/dialog';
 import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 
@@ -56,7 +54,13 @@ export class EventRudComponent implements OnInit {
 
   tagSelectedText(event_id) {
     const selectedText = window.getSelection();
-    var selected_event_id = this.event['id'];
+
+    var selected_event_id=null;
+    
+    if (selectedText.anchorNode) {
+      // data-evid => evid = EventId
+      selected_event_id = selectedText.anchorNode.parentElement.getAttribute('data-evid');
+    }
 
     // Condition1: If the selected text belongs to the event component where the button was clicked
     // Condition2: If the function was triggered via a shortcut
@@ -88,7 +92,7 @@ export class EventRudComponent implements OnInit {
     else {
       this.toastrService.show(
         'Please highlight text belonging to the appropriate event',
-        `Bad Highlight Found`);
+        'Bad Highlight');
       return false;
     }
 
