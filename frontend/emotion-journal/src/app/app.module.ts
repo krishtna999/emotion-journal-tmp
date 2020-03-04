@@ -9,6 +9,8 @@ import {
   NbDatepickerModule,
   NbThemeService,
   NbToastrModule,
+  NbIconConfig,
+  NbGlobalPhysicalPosition,
 } from '@nebular/theme';
 
 import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
@@ -24,6 +26,8 @@ import { EntryModule } from '../entry/entry.module';
 import { TagModule } from '../tag/tag.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+const iconConfig: NbIconConfig = { icon: 'text-outline', pack: 'eva' };
 
 @NgModule({
   declarations: [
@@ -43,7 +47,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NbDatepickerModule.forRoot(),
     NbEvaIconsModule,
     NbLayoutModule,
-    NbToastrModule.forRoot(),
+    NbToastrModule.forRoot({
+      icon:iconConfig,
+      preventDuplicates:true,
+      position:NbGlobalPhysicalPosition.BOTTOM_LEFT,
+    }),
     
     MatToolbarModule,
     MatButtonModule,
@@ -60,4 +68,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [NbThemeService,],
   bootstrap: [AppComponent],
 })
+
+
 export class AppModule { }

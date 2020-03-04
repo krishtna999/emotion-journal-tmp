@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import {
-  NbIconConfig,
-  NbGlobalPhysicalPosition,
   NbToastrService,
 } from '@nebular/theme';
 import { MatDialog } from '@angular/material/dialog';
@@ -58,14 +56,7 @@ export class EventRudComponent implements OnInit {
 
   tagSelectedText(event_id) {
     const selectedText = window.getSelection();
-    var selected_event_id = null;
-
-    if (selectedText.anchorNode) {
-      // data-evid => evid = EventId
-      selected_event_id = selectedText.anchorNode.parentElement.getAttribute('data-evid');
-    }
-
-    console.log(event_id, selected_event_id, selectedText);
+    var selected_event_id = this.event['id'];
 
     // Condition1: If the selected text belongs to the event component where the button was clicked
     // Condition2: If the function was triggered via a shortcut
@@ -77,7 +68,7 @@ export class EventRudComponent implements OnInit {
       let _selectionOptions = {
         'start_index': selectedText.getRangeAt(0).startOffset,
         'end_index': selectedText.getRangeAt(0).endOffset,
-        'event_id': parseInt(selected_event_id),
+        'event': this.event,
       }
       const windowRef = this.dialog.open(TagCreateComponent, { data: _selectionOptions });
     }
@@ -88,22 +79,16 @@ export class EventRudComponent implements OnInit {
       )
     ) {
       let _selectionOptions = {
-        'event_id': event_id,
+        'event': this.event,
       }
       const windowRef = this.dialog.open(TagCreateComponent, { data: _selectionOptions });
     }
 
     // Else only gets triggered if the text selected did not belong to the event whose add tag button was clicked (or it didn't belong to any event)
     else {
-      const iconConfig: NbIconConfig = { icon: 'text-outline', pack: 'eva' };
-
       this.toastrService.show(
         'Please highlight text belonging to the appropriate event',
-        `Bad Highlight Found`, {
-        preventDuplicates: true,
-        // status: 'warning',
-        position: NbGlobalPhysicalPosition.BOTTOM_LEFT, icon: iconConfig
-      });
+        `Bad Highlight Found`);
       return false;
     }
 
