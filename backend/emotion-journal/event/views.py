@@ -17,91 +17,45 @@ class EventCreate(APIView):
         try:
             data = request.data
 
-            base_event = Event.objects.get(pk=data['base_event_id'])
-            '''
-            start_index and end_index as how one would use in string slice.
+            base_event = Event.objects.get(pk=data['base_event']['id'])            
+            og_entry=base_event.entry
+            
 
-            TODO: Validate start and end indices boundary wrt string length.
-            '''
-            if('start_index' in data and 'end_index' in data):
-                start_index = data['start_index']
-                end_index = data['end_index']
             tags = data['tags']
 
-            print(data, len(base_event.text))
-            og_text = base_event.text
-            og_order_id = base_event.order_id
-            og_entry = base_event.entry
+            print(data['base_event'],'\n',tags)
 
-            if('start_index' not in data or 'end_index' not in data
-                or
-                start_index == 0 and end_index == len(base_event.text)
-                or
-                start_index == end_index
-               ):
-                '''
-                Event will be as is. No split operations here, just tagging
-                '''
+            
+            if('new_events' not in data):
                 tag_events(base_event, tags)
 
-            elif(start_index == 0):
-                '''
-                [FROM START, BEFORE END] Event will be split into 2 events, one additional at the end.
-                '''
-
-                base_event.text = og_text[start_index:end_index]
-                base_event.order_id = og_order_id+'1'
-                base_event.save()
-
-                new_event = Event.objects.create(
-                    text=og_text[end_index:], order_id=og_order_id+'2', entry=og_entry)
-
-                # Copy the old tags to the event that was split.
-                copy_tags(base_event, new_event)
-
-                # Add the new tags to the designated event (in this case, the base event itself)
-                tag_events(base_event, tags)
-
-            elif(end_index == len(base_event.text)):
-                '''
-                [AFTER START, TILL END]
-                Event will be split into 2 events, 1 additional. Existing base event will be modified.
-                '''
-
-                base_event.text = og_text[0:start_index]
-                base_event.order_id = og_order_id+'1'
-                base_event.save()
-
-                new_event = Event.objects.create(
-                    text=og_text[start_index:], order_id=og_order_id+'2', entry=og_entry)
-
-                # Copy the old tags to the event that was split.
-                copy_tags(base_event, new_event)
-
-                # Add the new tags to the designated event (in this case, the new event)
-                tag_events(new_event, tags)
             else:
                 '''
-                [FROM MIDDLE.  i.e.:
-                AFTER START,BEFORE END
-                ]
+                There are new_events which arise from the split
                 '''
-                base_event.text = og_text[0:start_index]
-                base_event.order_id = og_order_id+'1'
+                
+                base_event.text=data['base_event']['text']
+                base_event.order_id=data['base_event']['order_id']
                 base_event.save()
+                
+                for event in data['new_events']:
+                    new_split_event = Event.objects.create(
+                        text=event['text'],
+                        order_id=event['order_id'],
+                        entry=og_entry
+                    )
 
-                new_event_middle = Event.objects.create(
-                    text=og_text[start_index:end_index], order_id=og_order_id+'2', entry=og_entry)
+                    if('tag_flag' in event):
+                        # add the NEW tags to the new event
+                        tag_events(new_split_event, tags)
 
-                new_event_end = Event.objects.create(
-                    text=og_text[end_index:], order_id=og_order_id+'3', entry=og_entry)
+                    # Copy all old tags and the newly added ones to new_split_event
+                    copy_tags(base_event, new_split_event)
 
-                # Copy the old tags to the event that was split.
-                copy_tags(base_event, new_event_middle)
-                copy_tags(base_event, new_event_end)
+                if('tag_flag' in data['base_event']):
+                    # add NEW tags to base after creating new events.
+                    tag_events(base_event, tags)
 
-                # Add the new tags to the designated event (in this case, the middle event)
-                tag_events(new_event_middle, tags)
 
             return Response({'status': True}, status=status.HTTP_201_CREATED)
 
