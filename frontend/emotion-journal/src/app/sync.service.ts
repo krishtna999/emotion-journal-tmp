@@ -23,43 +23,44 @@ export class SyncService {
     }
   }
 
-  private getHttpOptions(token) {
-    if (token) {
-      return {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': 'Token ' + token
-        })
-      };
-    }
+  private getHttpOptions() {
+    // TODO: Figure out CHACHE !
+
+    // IMPORTANT
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'Cache-Control': 'no-cache',
+      // 'Pragma': 'no-cache',
+      // 'Authorization': 'Token ' + token
+    });
   }
 
   constructor(private http: HttpClient) {
   }
 
   post<T>(url, vars): Observable<T> {
-    return this.http.post<T>(BASE_URL + url, vars, this.getHttpOptions(this.token))
+    return this.http.post<T>(BASE_URL + url, vars, { headers: this.getHttpOptions() })
       .pipe(
         catchError(this.handleError<T>(null))
       );
   }
 
   get<T>(url, parameters): Observable<T> {
-    return this.http.get<T>(BASE_URL + url, { params: parameters })
+    return this.http.get<T>(BASE_URL + url, { params: parameters, headers: this.getHttpOptions() })
       .pipe(
         catchError(this.handleError<T>(null))
       );
   }
 
   delete<T>(url): Observable<T> {
-    return this.http.delete<T>(BASE_URL + url)
+    return this.http.delete<T>(BASE_URL + url, { headers: this.getHttpOptions() })
       .pipe(
         catchError(this.handleError<T>(null))
       );
   }
 
   patch<T>(url, vars): Observable<T> {
-    return this.http.patch<T>(BASE_URL + url, vars)
+    return this.http.patch<T>(BASE_URL + url, vars, { headers: this.getHttpOptions() })
       .pipe(
         catchError(this.handleError<T>(null))
       );
