@@ -1,0 +1,19 @@
+<div class="date_range_div">
+    <nb-select [ngModel]="date_option" (ngModelChange)="setDates($event)">
+        <nb-option *ngFor="let option of range_options" value="{{option.value}}">{{option.label}}
+        </nb-option>
+    </nb-select>
+
+
+    <div *ngIf="isRangeDate()" class="calendar_div">
+
+        <input nbInput placeholder="From" [nbDatepicker]="from_date" [ngModel]="date_from"
+            (ngModelChange)="dateFromChange($event)">
+        <nb-datepicker #from_date></nb-datepicker>
+
+        <input nbInput placeholder="Till" [nbDatepicker]="to_date" [ngModel]="date_to"
+            (ngModelChange)="dateToChange($event)">
+        <nb-datepicker #to_date></nb-datepicker>
+    </div>
+
+</div>

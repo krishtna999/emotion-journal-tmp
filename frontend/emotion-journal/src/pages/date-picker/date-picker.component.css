@@ -1,0 +1,6 @@
+.date_range_div *{
+    display: inline-block;
+    margin: 2px;
+    margin-bottom: 5px;
+    /* width: 20%; */
+}
