@@ -12,6 +12,7 @@ pubspec.lock
 # If you don't generate documentation locally you can remove this line.
 doc/api/
 backend/venv/
+frontend/emotion-journal/node_modules/
 __pycache__
 
 
@@ -54,3 +55,4 @@ __pycache__/
 backend/emotion-journal/emotion_journal/__pycache__/__init__.cpython-36.pyc
 backend/emotion-journal/emotion_journal/__pycache__/settings.cpython-36.pyc
 backend/emotion-journal/emotion_journal/__pycache__/urls.cpython-36.pyc
+
