@@ -36,9 +36,9 @@ export class EventService {
 
       for (var i = 1; i < tags.length; i++) {
         params['tags'] += ',' +
-                          encodeURIComponent(this.http.encrypt(tags[0]['type'],true)) + 
+                          encodeURIComponent(this.http.encrypt(tags[i]['type'],true)) + 
                           ':' + 
-                          encodeURIComponent(this.http.encrypt(tags[0]['name'],true));
+                          encodeURIComponent(this.http.encrypt(tags[i]['name'],true));
       }
     }
 
