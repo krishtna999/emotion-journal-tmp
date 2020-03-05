@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NbLayoutModule, NbInputModule, NbCardModule, NbSidebarModule, NbCalendarModule } from '@nebular/theme';
+import { NbInputModule, NbCardModule, } from '@nebular/theme';
 
 import { EntryRudComponent } from './entry-rud/entry-rud.component';
 import { EntryCreateComponent } from './entry-create/entry-create.component';
@@ -18,10 +18,8 @@ import { TagCreateComponent } from 'src/tag/tag-create/tag-create.component';
     CommonModule,
     FormsModule,
 
-    NbLayoutModule,
     NbInputModule,
     NbCardModule,
-    NbCalendarModule,
     EventModule,
   ],
   exports: [

@@ -1,0 +1,13 @@
+<nb-layout>
+    <nb-layout-column>
+        <div class="wrapper">
+            <div class="sidebar">
+                <nb-calendar [date]="selected_date" (dateChange)="this.selected_date=$event"></nb-calendar>
+
+            </div>
+            <div class="main">
+                <app-entry-rud [selected_date]="selected_date"></app-entry-rud>
+            </div>
+        </div>
+    </nb-layout-column>
+</nb-layout>

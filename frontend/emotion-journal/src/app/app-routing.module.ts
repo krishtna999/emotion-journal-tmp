@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EntryRudComponent } from '../entry/entry-rud/entry-rud.component';
 import { EventSearchComponent } from '../event/event-search/event-search.component';
 import { TagAnalyticsComponent } from 'src/analytics/tag-analytics/tag-analytics.component';
+import { DiaryByDateComponent } from 'src/pages/diary-by-date/diary-by-date.component';
 
 const routes: Routes = [
   // NOTE: You would also have to add links in pages-menu.ts under pages
-  { path: 'diary', component: EntryRudComponent },
+  { path: 'diary', component: DiaryByDateComponent },
   { path: 'search', component: EventSearchComponent },
   { path: 'analytics', component: TagAnalyticsComponent },
   
