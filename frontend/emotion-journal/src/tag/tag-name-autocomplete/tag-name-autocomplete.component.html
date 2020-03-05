@@ -1,8 +1,0 @@
-<mat-form-field class="tag-input-field">
-    <input type="text" placeholder="Tag Name" aria-label="Tag Name" matInput [formControl]="nameControl" [matAutocomplete]="name" required>
-    <mat-autocomplete #name="matAutocomplete" autoActiveFirstOption>
-      <mat-option *ngFor="let option of filtered_name_Options | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
