@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { NbButtonModule,NbTooltipModule } from '@nebular/theme';
+import { NbButtonModule,NbTooltipModule, NbIconModule } from '@nebular/theme';
 
 
 import { TagRudComponent } from './tag-rud/tag-rud.component';
@@ -17,6 +17,8 @@ import { SyncService } from '../app/sync.service';
 import { EntryService } from '../entry/entry.service';
 import { TagTypeAutocompleteComponent } from './tag-type-autocomplete/tag-type-autocomplete.component';
 import { TagNameAutocompleteComponent } from './tag-name-autocomplete/tag-name-autocomplete.component';
+import { TagFilterComponent } from './tag-filter/tag-filter.component';
+import { MatDialogModule } from '@angular/material';
 
 
 @NgModule({
@@ -25,24 +27,28 @@ import { TagNameAutocompleteComponent } from './tag-name-autocomplete/tag-name-a
     TagCreateComponent,
     TagTypeAutocompleteComponent,
     TagNameAutocompleteComponent,
+    TagFilterComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
 
+    NbButtonModule,
+    NbIconModule,
+    NbTooltipModule,
+    
+    MatDialogModule,
     MatChipsModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    NbButtonModule,
-    NbTooltipModule,
-
   ],
   exports: [
     TagRudComponent,
     TagCreateComponent,
+    TagFilterComponent,
   ],
 
   providers: [
