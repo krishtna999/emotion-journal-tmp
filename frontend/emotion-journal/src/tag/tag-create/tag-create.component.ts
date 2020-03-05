@@ -45,7 +45,7 @@ export class TagCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.event['id']) {
+    if (this.event && this.event['id']) {
       var add_tag_observable = this.tagService.add_tag(
         this.event,
         this.start_index,
