@@ -26,6 +26,7 @@ import { EntryModule } from '../entry/entry.module';
 import { TagModule } from '../tag/tag.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnalyticsModule } from 'src/analytics/analytics.module';
+import { PagesModule } from 'src/pages/pages.module';
 
 
 const iconConfig: NbIconConfig = { icon: 'text-outline', pack: 'eva' };
@@ -59,6 +60,7 @@ const iconConfig: NbIconConfig = { icon: 'text-outline', pack: 'eva' };
     MatMenuModule,
     MatIconModule,
 
+    PagesModule,
     EntryModule,
     TagModule,
     AnalyticsModule,
