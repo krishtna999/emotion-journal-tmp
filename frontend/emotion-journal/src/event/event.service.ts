@@ -30,15 +30,15 @@ export class EventService {
     */
     var params = {};
     if (tags.length > 0) {
-      params['tags'] =  encodeURIComponent(this.http.encrypt(tags[0]['type'],true)) + 
+      params['tags'] =  this.http.encrypt(tags[0]['type'],true, true) + 
                         ':' + 
-                        encodeURIComponent(this.http.encrypt(tags[0]['name'],true));
+                        this.http.encrypt(tags[0]['name'],true, true);
 
       for (var i = 1; i < tags.length; i++) {
         params['tags'] += ',' +
-                          encodeURIComponent(this.http.encrypt(tags[i]['type'],true)) + 
+                          this.http.encrypt(tags[i]['type'],true, true) + 
                           ':' + 
-                          encodeURIComponent(this.http.encrypt(tags[i]['name'],true));
+                          this.http.encrypt(tags[i]['name'],true, true);
       }
     }
 

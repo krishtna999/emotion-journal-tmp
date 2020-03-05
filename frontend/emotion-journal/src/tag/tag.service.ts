@@ -123,7 +123,7 @@ export class TagService {
         so that they can be passed on as GET parameters without deformation.
 
       */
-      params['type'] = encodeURIComponent(this.http.encrypt(type, true));
+      params['type'] = this.http.encrypt(type, true, true);
     }
     return this.http.get(TAG_AUTOFILL_URL, params)
       .pipe(

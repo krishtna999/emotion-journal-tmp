@@ -66,11 +66,17 @@ export class SyncService {
       );
   }
 
-  encrypt(plain_text: string, make_lower = false) {
+  encrypt(plain_text: string, make_lower = false, get_parameter=false) {
     if (make_lower) {
       plain_text = plain_text.toLowerCase();
     }
-    return CryptoJS.AES.encrypt(plain_text, CryptoJS.SHA512(key), { iv: iv }).toString();
+    
+    var encrypted_str=CryptoJS.AES.encrypt(plain_text, CryptoJS.SHA512(key), { iv: iv }).toString();
+
+    if(get_parameter){
+      return encodeURIComponent(encrypted_str);
+    }
+    return encrypted_str;
   }
 
   decrypt(cipher_text) {
