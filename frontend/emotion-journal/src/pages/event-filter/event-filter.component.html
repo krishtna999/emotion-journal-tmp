@@ -1,0 +1,18 @@
+<nb-layout>
+    <nb-sidebar class="sidebar">
+        <!-- ADD TAG FILTER -->
+        <app-tag-filter (tagsChange)="setTags($event)"></app-tag-filter>
+    </nb-sidebar>
+    <nb-layout-column style="padding: 0px;">
+        <nb-card>
+            <nb-card-body>
+                <app-date-picker (dateRangeChange)="setDateRange($event)"></app-date-picker>
+                <button nbButton id="search_submit" status="primary" (click)="getFilteredQuery()">
+                    Search<nb-icon icon="search-outline"></nb-icon>
+                </button>
+            </nb-card-body>
+
+        </nb-card>
+        <app-event-search [searchParams]="searchParams" [read_only]="read_only"></app-event-search>
+    </nb-layout-column>
+</nb-layout>
