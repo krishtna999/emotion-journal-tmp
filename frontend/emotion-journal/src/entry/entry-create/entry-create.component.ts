@@ -22,7 +22,6 @@ export class EntryCreateComponent implements OnInit {
 
   // When we create a new Entry, we also create a new Event along with it.
   createEntry() {
-    console.log(this.selected_date);
     this._textAreaStatus = 'basic';
     var create_entry_observable=this.entryService.create_entry(
       this.text,

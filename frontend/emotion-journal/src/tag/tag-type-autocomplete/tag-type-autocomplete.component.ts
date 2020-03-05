@@ -24,7 +24,6 @@ export class TagTypeAutocompleteComponent implements OnInit {
         This means we can go ahead and proceed to get values for the "name" field
     */
    this.tagType=this.typeControl.value;
-   console.log('out',this.tagType);
    this.tagTypeChange.emit(this.tagType);
   }
   typeControl=new FormControl();

@@ -46,7 +46,6 @@ export class EventRudComponent implements OnInit {
   updateEvent() {
     // Also change the nbModel bind to a form control type bind.
     this.event['text'] = this.event['text'].replace('\n', '');
-    console.log(this.event['text']);
     this.eventService.update_event(this.event['id'], this.event['text'])
     this._editing = false;
     this._textAreaStatus = 'basic';

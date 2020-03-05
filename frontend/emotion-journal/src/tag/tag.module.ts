@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material';
 import { NbButtonModule,NbTooltipModule, NbIconModule } from '@nebular/theme';
 
 
@@ -18,7 +19,6 @@ import { EntryService } from '../entry/entry.service';
 import { TagTypeAutocompleteComponent } from './tag-type-autocomplete/tag-type-autocomplete.component';
 import { TagNameAutocompleteComponent } from './tag-name-autocomplete/tag-name-autocomplete.component';
 import { TagFilterComponent } from './tag-filter/tag-filter.component';
-import { MatDialogModule } from '@angular/material';
 
 
 @NgModule({

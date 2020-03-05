@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {  NbToastrService } from '@nebular/theme';
+import { NbToastrService } from '@nebular/theme';
 import { SyncService } from '../app/sync.service';
 import { map } from 'rxjs/operators';
 
@@ -16,7 +16,7 @@ const TAG_AUTOFILL_URL = TAG_RUD_URL + 'autofill/';
 })
 export class TagService {
 
-  constructor(private http: SyncService,private toastrService: NbToastrService,) { }
+  constructor(private http: SyncService, private toastrService: NbToastrService, ) { }
 
   add_tag(event: object, start_index: number, end_index: number, tag_type: string, tag_name: string) {
 
@@ -51,7 +51,6 @@ export class TagService {
     };
 
 
-    console.log(start_index,end_index)
     if (start_index != end_index
       &&
       !(start_index == 0 && end_index == og_text.length)
@@ -106,7 +105,6 @@ export class TagService {
       }
     }
 
-    console.log(json);
     return this.http.post(TAG_CREATE_URL, json);
   }
 
@@ -120,7 +118,6 @@ export class TagService {
     }
 
     if (type) {
-      console.log(type);
       /* 
         encodeURIComponent is used to encode the ENCRYPTED STRINGS (which contain reserved characters)
         so that they can be passed on as GET parameters without deformation.
