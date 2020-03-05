@@ -25,6 +25,7 @@ import { PagesComponent } from './pages/pages.component';
 import { EntryModule } from '../entry/entry.module';
 import { TagModule } from '../tag/tag.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AnalyticsModule } from 'src/analytics/analytics.module';
 
 
 const iconConfig: NbIconConfig = { icon: 'text-outline', pack: 'eva' };
@@ -60,6 +61,7 @@ const iconConfig: NbIconConfig = { icon: 'text-outline', pack: 'eva' };
 
     EntryModule,
     TagModule,
+    AnalyticsModule,
 
   ],
   exports: [
