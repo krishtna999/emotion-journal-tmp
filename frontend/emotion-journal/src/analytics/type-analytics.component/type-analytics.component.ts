@@ -18,8 +18,8 @@ export class TypeAnalyticsComponent implements OnInit {
 
   type_ratio: any[];
 
-  view: any[] = [600, 400];
-  grid_view: any[] = [400, 250];
+  view: any[] = [500, 400];
+  grid_view: any[] = [500, 500];
   showLabels: boolean = true;
   gradient: boolean = true;
 
