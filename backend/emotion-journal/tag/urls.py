@@ -6,7 +6,6 @@ from . import views
 
 router=SimpleRouter()
 router.register('',views.TagViewSet)
-# print(router.urls)
 
 urlpatterns=[
     path('autofill/',views.TagValuesView.as_view())

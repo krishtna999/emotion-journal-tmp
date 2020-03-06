@@ -11,7 +11,6 @@ class EventFilter(django_filters.FilterSet):
 
     def top_emotion_filter(self, queryset, value, *args, **kwargs):
         if(args):
-            print(args)
             emotions = args[0].split(',')
             # Top Level Emotions
             tle = transform_emotions(emotions)

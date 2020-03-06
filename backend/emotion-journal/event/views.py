@@ -25,8 +25,6 @@ class EventCreate(APIView):
 
             tags = data['tags']
 
-            print(data['base_event'],'\n',tags)
-
             
             if('new_events' not in data):
                 tag_events(base_event, tags)

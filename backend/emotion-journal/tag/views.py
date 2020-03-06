@@ -26,8 +26,6 @@ class TagValuesView(APIView):
                              'message': 'Autofill only for tag name or tag type'},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        print(field_type, autofill_field)
-
         if(field_type):
             '''
             NOTE: The string "field_type" is an encrypted one. 
