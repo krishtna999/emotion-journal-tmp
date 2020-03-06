@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-analytics',
-  templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.css']
+  selector: 'app-type-analytics-page',
+  templateUrl: './type-analytics-page.component.html',
+  styleUrls: ['./type-analytics-page.component.css']
 })
-export class AnalyticsComponent implements OnInit {
+export class TypeAnalyticsPageComponent implements OnInit {
   read_only = true;
   
   primary_type:object;

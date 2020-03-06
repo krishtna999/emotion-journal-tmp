@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DiaryByDateComponent } from 'src/pages/diary-by-date/diary-by-date.component';
-import { EventFilterComponent } from 'src/pages/event-filter/event-filter.component';
-import { AnalyticsComponent } from 'src/pages/analytics/analytics.component';
+import { EntryDatePageComponent } from 'src/pages/entry-date-page/entry-date-page.component';
+import { EventFilterPageComponent } from 'src/pages/event-filter-page/event-filter-page.component';
+import { TypeAnalyticsPageComponent } from 'src/pages/type-analytics-page/type-analytics-page.component';
 
 const routes: Routes = [
   // NOTE: You would also have to add links in pages-menu.ts under pages
-  { path: 'diary', component: DiaryByDateComponent },
-  { path: 'search', component: EventFilterComponent },
-  { path: 'analytics', component: AnalyticsComponent },
+  { path: 'diary', component: EntryDatePageComponent },
+  { path: 'search', component: EventFilterPageComponent },
+  { path: 'analytics', component: TypeAnalyticsPageComponent },
   
   // { path: 'analytics', component:}
 

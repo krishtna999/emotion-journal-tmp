@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventFilterComponent } from './event-filter.component';
+import { TypeAnalyticsPageComponent } from './type-analytics-page.component';
 
-describe('EventFilterComponent', () => {
-  let component: EventFilterComponent;
-  let fixture: ComponentFixture<EventFilterComponent>;
+describe('TypeAnalyticsPageComponent', () => {
+  let component: TypeAnalyticsPageComponent;
+  let fixture: ComponentFixture<TypeAnalyticsPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventFilterComponent ]
+      declarations: [ TypeAnalyticsPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventFilterComponent);
+    fixture = TestBed.createComponent(TypeAnalyticsPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

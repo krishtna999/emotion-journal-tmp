@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-event-filter',
-  templateUrl: './event-filter.component.html',
-  styleUrls: ['./event-filter.component.css']
+  selector: 'app-event-filter-page',
+  templateUrl: './event-filter-page.component.html',
+  styleUrls: ['./event-filter-page.component.css']
 })
-export class EventFilterComponent implements OnInit {
+export class EventFilterPageComponent implements OnInit {
   read_only = true;
   searchParams: object;
 

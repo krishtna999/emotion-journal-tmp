@@ -4,20 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { NbLayoutModule, NbSidebarModule, NbCalendarModule, NbInputModule, NbIconModule, NbCardModule, NbSelectModule, NbDatepickerModule, NbButtonModule } from '@nebular/theme';
 
-import { MatChipsModule, MatDialogModule } from '@angular/material';
+import { MatChipsModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { EntryModule } from 'src/entry/entry.module';
 import { EventModule } from 'src/event/event.module';
 import { TagModule } from 'src/tag/tag.module';
 import { AnalyticsModule } from 'src/analytics/analytics.module';
 
-import { DiaryByDateComponent } from './diary-by-date/diary-by-date.component';
-import { EventFilterComponent } from './event-filter/event-filter.component';
+import { EntryDatePageComponent } from './entry-date-page/entry-date-page.component';
+import { EventFilterPageComponent } from './event-filter-page/event-filter-page.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
-import { AnalyticsComponent } from './analytics/analytics.component';
+import { TypeAnalyticsPageComponent } from './type-analytics-page/type-analytics-page.component';
 
 @NgModule({
-  declarations: [DiaryByDateComponent, EventFilterComponent, DatePickerComponent, AnalyticsComponent],
+  declarations: [EntryDatePageComponent, EventFilterPageComponent, DatePickerComponent, TypeAnalyticsPageComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,7 +32,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
     NbSelectModule,
     NbIconModule,
     NbCardModule,
-    
+
     MatDialogModule,
     MatChipsModule,
 

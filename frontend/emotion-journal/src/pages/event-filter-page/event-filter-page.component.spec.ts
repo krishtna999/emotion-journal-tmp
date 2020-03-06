@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DiaryByDateComponent } from './diary-by-date.component';
+import { EventFilterPageComponent } from './event-filter-page.component';
 
-describe('DiaryByDateComponent', () => {
-  let component: DiaryByDateComponent;
-  let fixture: ComponentFixture<DiaryByDateComponent>;
+describe('EventFilterPageComponent', () => {
+  let component: EventFilterPageComponent;
+  let fixture: ComponentFixture<EventFilterPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DiaryByDateComponent ]
+      declarations: [ EventFilterPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DiaryByDateComponent);
+    fixture = TestBed.createComponent(EventFilterPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
