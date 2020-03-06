@@ -32,7 +32,7 @@ from tag.models import Tag
 
 def transform_emotions(emotions):
     transformed_set=emotions.copy()
-    # print(emotions)
+
     for emotion in emotions:
 
         if(emotion in TOP_LEVEL_EMOTIONS):

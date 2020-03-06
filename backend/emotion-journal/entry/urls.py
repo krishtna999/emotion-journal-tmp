@@ -10,4 +10,3 @@ urlpatterns = [
         {'get': 'retrieve', 'patch': 'partial_update', 'delete': 'destroy'}), name='Retrieve Patch Delete Entry'),
 ]
 
-print(urlpatterns)
