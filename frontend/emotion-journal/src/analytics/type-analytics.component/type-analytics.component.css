@@ -1,4 +1,16 @@
-.graph_div > *{
+.column > *{
     display: flex;
     justify-content: center;
 }
+
+.column {
+    float: left;
+    width: 50%;
+  }
+  
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+

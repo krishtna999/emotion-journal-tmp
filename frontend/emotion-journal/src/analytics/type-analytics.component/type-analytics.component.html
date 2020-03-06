@@ -1,12 +1,13 @@
-<div class="graph_div">
-  <ngx-charts-pie-chart 
-  [view]="view" [results]="type_ratio" [gradient]="gradient"
-    [labels]="showLabels"
-    (select)="onSelect($event)"
-    >
-  </ngx-charts-pie-chart>
-  <ngx-charts-pie-grid [view]="grid_view" [results]="type_ratio" (select)="onSelect($event)">
-  </ngx-charts-pie-grid>
+<div class="row">
+  <div class="column">
+    <ngx-charts-pie-chart [view]="view" [results]="type_ratio" [gradient]="gradient" [labels]="showLabels"
+      (select)="onSelect($event)">
+    </ngx-charts-pie-chart>
+  </div>
+  <div class="column">
+    <ngx-charts-pie-grid [view]="grid_view" [results]="type_ratio" (select)="onSelect($event)">
+    </ngx-charts-pie-grid>
+  </div>
 </div>
 <!-- 
     (select)="onSelect($event)"

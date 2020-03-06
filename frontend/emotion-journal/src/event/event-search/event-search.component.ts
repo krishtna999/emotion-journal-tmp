@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Inject } from '@angular/core';
 
 import { EventService } from '../event.service';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 
 @Component({
@@ -13,7 +14,15 @@ export class EventSearchComponent implements OnInit {
   @Input() read_only: boolean;
   events;
 
-  constructor(private eventService: EventService) {
+  constructor(
+    private eventService: EventService,
+    @Inject(MAT_DIALOG_DATA) public data: Object
+  ) {
+    if (data) {
+      this.searchParams = data;
+      this.read_only = this.searchParams['read_only'];
+      this.getFilteredQuery();
+    }
   }
 
 
@@ -36,8 +45,6 @@ export class EventSearchComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
     this.getFilteredQuery();
   }
 

@@ -7,6 +7,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { TypeAnalyticsComponent } from './type-analytics.component/type-analytics.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material';
+import { EventSearchComponent } from 'src/event/event-search/event-search.component';
 
 
 @NgModule({
@@ -19,9 +21,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NbLayoutModule,
     NbSidebarModule,
 
+    MatDialogModule,
     NgxChartsModule,
 
   ],
-  exports: [TypeAnalyticsComponent,]
+  exports: [TypeAnalyticsComponent,],
+  entryComponents: [
+    EventSearchComponent,
+  ]
 })
 export class AnalyticsModule { }
