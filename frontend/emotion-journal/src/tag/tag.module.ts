@@ -49,6 +49,8 @@ import { TagFilterComponent } from './tag-filter/tag-filter.component';
     TagRudComponent,
     TagCreateComponent,
     TagFilterComponent,
+    TagTypeAutocompleteComponent,
+    TagNameAutocompleteComponent
   ],
 
   providers: [

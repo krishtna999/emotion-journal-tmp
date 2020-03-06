@@ -1,0 +1,23 @@
+<nb-layout>
+    <nb-sidebar class="sidebar">
+        <div class="options">
+            <app-tag-type-autocomplete (tagTypeChange)=setPrimaryTag($event)></app-tag-type-autocomplete>
+            <app-tag-filter (tagsChange)="setTags($event)"></app-tag-filter>
+        </div>
+    </nb-sidebar>
+    <nb-layout-column style="padding: 0px;">
+        <nb-card>
+            <nb-card-body>
+                <app-date-picker (dateRangeChange)="setDateRange($event)"></app-date-picker>
+                <button nbButton id="analyitcs_submit" status="primary" (click)="getFilteredAnalytics()">
+                    Search<nb-icon icon="search-outline"></nb-icon>
+                </button>
+            </nb-card-body>
+        </nb-card>
+        <nb-card>
+            <nb-card-body>
+                <app-type-analytics [searchParams]="searchParams" [read_only]="read_only"></app-type-analytics>
+            </nb-card-body>
+        </nb-card>
+    </nb-layout-column>
+</nb-layout>

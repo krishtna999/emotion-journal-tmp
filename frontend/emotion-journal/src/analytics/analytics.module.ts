@@ -5,32 +5,23 @@ import { FormsModule } from '@angular/forms';
 import { NbLayoutModule, NbSidebarModule } from '@nebular/theme';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
-
-import { TagModule } from 'src/tag/tag.module';
-
-
-
-
-import { TagAnalyticsComponent } from './tag-analytics/tag-analytics.component';
+import { TypeAnalyticsComponent } from './type-analytics.component/type-analytics.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
-  declarations: [TagAnalyticsComponent,],
+  declarations: [TypeAnalyticsComponent,],
   imports: [
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
-    
+
     NbLayoutModule,
     NbSidebarModule,
-    
+
     NgxChartsModule,
 
-
-
-    TagModule,
-
-  ]
+  ],
+  exports: [TypeAnalyticsComponent,]
 })
 export class AnalyticsModule { }
