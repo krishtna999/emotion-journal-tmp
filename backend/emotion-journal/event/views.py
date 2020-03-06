@@ -1,3 +1,5 @@
+from urllib import parse
+
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -84,8 +86,13 @@ class EventAnalyticsViewSet(generics.ListAPIView):
         # The first line is taken directly from the list function source.
         queryset = self.filter_queryset(self.get_queryset())
         # The pagination part in the source is excluded as we only require the count() value.
-
-        analytics_tag_type = request.query_params.get('analytics_tag_type')
+        '''
+            NOTE: The string "analytics_tag_type" is an encrypted one. 
+            It contains special symbols which are also used in the GET url parameters.
+            Hence it is encoded using encodeURIComponent() in the frontend.
+            Thus, we use parse.unquote() to decode the "field_type".
+        '''
+        analytics_tag_type = parse.unquote(request.query_params.get('analytics_tag_type'))
 
         count_data = {}
         if(analytics_tag_type):

@@ -1,8 +1,9 @@
+from urllib import parse
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 from django_filters import rest_framework as filters
-from urllib import parse
 
 from .models import Tag
 from .serializers import TagSerializer
@@ -31,7 +32,7 @@ class TagValuesView(APIView):
             '''
             NOTE: The string "field_type" is an encrypted one. 
             It contains special symbols which are also used in the GET url parameters.
-            Hence it encoded using encodeURIComponent() in the frontend.
+            Hence it is encoded using encodeURIComponent() in the frontend.
             Thus, we use parse.unquote() to decode the "field_type".
             '''
             values = Tag.objects.filter(type=parse.unquote(field_type))     \
