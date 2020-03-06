@@ -13,7 +13,7 @@ import {
   NbGlobalPhysicalPosition,
 } from '@nebular/theme';
 
-import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HotkeyModule } from 'angular2-hotkeys';
@@ -69,7 +69,10 @@ const iconConfig: NbIconConfig = { icon: 'text-outline', pack: 'eva' };
   exports: [
 
   ],
-  providers: [NbThemeService,],
+  providers: [NbThemeService,
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: null },
+  ],
   bootstrap: [AppComponent],
 })
 
