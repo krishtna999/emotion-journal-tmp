@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { constants } from './constants';
+import { constants } from '../constants';
 
 import { TagService } from '../tag.service';
 
