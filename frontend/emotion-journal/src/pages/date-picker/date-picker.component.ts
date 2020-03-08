@@ -41,13 +41,13 @@ export class DatePickerComponent implements OnInit {
         this.date_to = null;
         break;
       case 'PAST_WEEK':
-        this.date_to.setDate(this.date_from.getDate() - 7);
+        this.date_from.setDate(this.date_to.getDate() - 7);
         break;
       case 'PAST_MONTH':
-        this.date_to.setDate(this.date_from.getDate() - 30);
+        this.date_from.setDate(this.date_to.getDate() - 30);
         break;
       case 'PAST_YEAR':
-        this.date_to.setDate(this.date_from.getDate() - 365);
+        this.date_from.setDate(this.date_to.getDate() - 365);
         break;
     }
     this.dateRangeChange.emit({'date_from':this.date_from,'date_to':this.date_to});
