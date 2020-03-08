@@ -20,7 +20,7 @@ class EventFilter(django_filters.FilterSet):
     def tag_filter(self, queryset, value, *args, **kwargs):
         if(args):
             tags = args[0].split(',')
-            qs = Event.objects.all()
+            qs = queryset
             for tag in tags:
                 # NOTE: Check the comment under TagValuesView in Tag.views
                 tagType = parse.unquote(tag.split(':')[0])
