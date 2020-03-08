@@ -31,7 +31,7 @@ export class TagNameAutocompleteComponent implements OnInit {
     );
   }
 
-  @Input() tagName:string;
+  @Input() tagName: string;
 
   @Output() tagNameChange = new EventEmitter<string>();
 
@@ -45,11 +45,14 @@ export class TagNameAutocompleteComponent implements OnInit {
   constructor(private tagService: TagService, ) { }
 
   ngOnInit() {
-    this.nameControl.valueChanges.subscribe(value=>
-      {
-        this.tagName=value;
-        this.tagNameChange.emit(this.tagName);
-      }
+    if (this.tagName) {
+      this.nameControl.setValue(this.tagName);
+    }
+    
+    this.nameControl.valueChanges.subscribe(value => {
+      this.tagName = value;
+      this.tagNameChange.emit(this.tagName);
+    }
     );
 
   }

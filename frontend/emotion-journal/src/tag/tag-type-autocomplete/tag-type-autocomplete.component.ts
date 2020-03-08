@@ -38,6 +38,10 @@ export class TagTypeAutocompleteComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    if(this.tagType){
+      this.typeControl.setValue(this.tagType);
+    }
+
     this.tagService.get_autofill_data('type',null).subscribe(
       data=>{
         this.type_opt=data['values'];
