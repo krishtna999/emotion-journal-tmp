@@ -49,9 +49,9 @@ export class TypeAnalyticsComponent implements OnInit {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log(this.searchParams);
     if (this.searchParams) {
-      this.analyticsService.type_ratio(this.searchParams['primary_tag_type'])
+
+      this.analyticsService.get_type_ratio(this.searchParams)
         .subscribe(
           data => {
             this.type_ratio = data;
