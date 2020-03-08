@@ -33,7 +33,7 @@ export class TypeAnalyticsComponent implements OnInit {
     // temp_params is a temporary copy of searchParams
     temp_params['tags'] = this.searchParams['tags'].concat(
       [{
-      'type': this.searchParams['primary_type'],
+      'type': this.searchParams['primary_tag_type'],
       'name': event['name'],
       }]
     );
@@ -51,7 +51,7 @@ export class TypeAnalyticsComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     // console.log(this.searchParams);
     if (this.searchParams) {
-      this.analyticsService.type_ratio(this.searchParams['primary_type'])
+      this.analyticsService.type_ratio(this.searchParams['primary_tag_type'])
         .subscribe(
           data => {
             this.type_ratio = data;
