@@ -7,27 +7,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TypeAnalyticsPageComponent implements OnInit {
   read_only = true;
-  
-  primary_type:object;
+  // By default, it is a pie chart
+  is_bar_chart = false;
+
+  prim_tag_type = "";
 
   searchParams: object;
   tags = new Array<object>();
   date_from: Date;
   date_to: Date;
 
-  constructor() { }
-  
+  constructor(
+  ) { }
+
   getFilteredAnalytics() {
     this.searchParams = {
-      'primary_type':this.primary_type,
-      'tags': this.tags,
+      'primary_tag_type': this.prim_tag_type,
+      /* If tags array is edited, then to trigger onChanges in the child component, 
+       we are creating a duplicate of tags array everytime.
+       Otherwise, 
+        there would be no change as the value will always be the pointer (never changes)
+      */
+      'tags': this.tags.slice(),
       'date_from': this.date_from,
       'date_to': this.date_to
     }
-  }
-  
-  setPrimaryTag(event){
-    this.primary_type=event;
   }
 
   setDateRange(event) {
@@ -35,11 +39,11 @@ export class TypeAnalyticsPageComponent implements OnInit {
     this.date_to = event['date_to'];
   }
 
-  setTags(event){
-    this.tags=event;
+  setTags(event) {
+    this.tags = event;
   }
 
-  
+
   ngOnInit() {
   }
 

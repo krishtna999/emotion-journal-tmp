@@ -15,13 +15,13 @@ export class TypeAnalyticsComponent implements OnInit {
 
   @Input() read_only: boolean;
   @Input() searchParams: object;
+  @Input() is_bar_chart: boolean;
 
-  type_ratio: any[];
 
-  view: any[] = [500, 400];
-  grid_view: any[] = [500, 500];
-  showLabels: boolean = true;
-  gradient: boolean = true;
+  type_ratio = new Array<any>();
+
+  chart_props;
+
 
   // colorScheme = "flame";
 
@@ -33,24 +33,55 @@ export class TypeAnalyticsComponent implements OnInit {
     // temp_params is a temporary copy of searchParams
     temp_params['tags'] = this.searchParams['tags'].concat(
       [{
-      'type': this.searchParams['primary_tag_type'],
-      'name': event['name'],
+        'type': this.searchParams['primary_tag_type'],
+        'name': event['name'],
       }]
     );
-    temp_params['read_only']=this.read_only;
+    temp_params['read_only'] = this.read_only;
     this.dialog.open(EventSearchComponent, { data: temp_params });
   }
-  renderGraph() {
-    // Object.assign(this, { single });
+
+  setChartProperties() {
+    this.chart_props = {
+      bar: {
+        'view': [1000, 400],
+        'showXAxis': true,
+        'showYAxis': true,
+        'showLegend': true,
+        'showXAxisLabel': true,
+        'showYAxisLabel': true,
+        'yAxisLabel': 'Count',
+      },
+      pie: {
+        view: [500, 400],
+        grid_view: [500, 500],
+        showLabels: true,
+        gradient: true,
+      }
+    }
+    if (this.searchParams) {
+      this.chart_props.bar.xAxisLabel = this.searchParams['primary_tag_type'];
+      if (this.searchParams['tags'].length > 0) {
+        this.chart_props.bar.yAxisLabel =
+          this.searchParams['tags'][0]['name']
+          +
+          ' count';
+      }
+      else {
+        this.chart_props.yAxisLabel = 'Count';
+      };
+    }
   }
 
+
   ngOnInit() {
+    this.setChartProperties();
   }
 
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.searchParams) {
-
+      this.setChartProperties();
       this.analyticsService.get_type_ratio(this.searchParams)
         .subscribe(
           data => {

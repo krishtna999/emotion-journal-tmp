@@ -1,16 +1,18 @@
-<div class="row">
+<div [hidden]="!is_bar_chart">
+  <ngx-charts-bar-vertical [view]="chart_props.bar.view" [results]="type_ratio" [xAxis]="chart_props.bar.showXAxis"
+    [yAxis]="chart_props.bar.showYAxis" [legend]="chart_props.bar.showLegend"
+    [showXAxisLabel]="chart_props.bar.showXAxisLabel" [showYAxisLabel]="chart_props.bar.showYAxisLabel"
+    [xAxisLabel]="chart_props.bar.xAxisLabel" [yAxisLabel]="chart_props.bar.yAxisLabel" (select)="onSelect($event)">
+  </ngx-charts-bar-vertical>
+</div>
+<div [hidden]="is_bar_chart" class="row">
   <div class="column">
-    <ngx-charts-pie-chart [view]="view" [results]="type_ratio" [gradient]="gradient" [labels]="showLabels"
-      (select)="onSelect($event)">
+    <ngx-charts-pie-chart [view]="chart_props.pie.view" [results]="type_ratio" [gradient]="chart_props.pie.gradient"
+      [labels]="chart_props.pie.showLabels" (select)="onSelect($event)">
     </ngx-charts-pie-chart>
   </div>
   <div class="column">
-    <ngx-charts-pie-grid [view]="grid_view" [results]="type_ratio" (select)="onSelect($event)">
+    <ngx-charts-pie-grid [view]="chart_props.pie.grid_view" [results]="type_ratio" (select)="onSelect($event)">
     </ngx-charts-pie-grid>
   </div>
 </div>
-<!-- 
-    (select)="onSelect($event)"
-    (activate)="onActivate($event)"
-    (deactivate)="onDeactivate($event)"
- -->

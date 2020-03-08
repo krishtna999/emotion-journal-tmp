@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material';
 import { EventSearchComponent } from 'src/event/event-search/event-search.component';
 
-
 @NgModule({
   declarations: [TypeAnalyticsComponent,],
   imports: [
@@ -25,7 +24,9 @@ import { EventSearchComponent } from 'src/event/event-search/event-search.compon
     NgxChartsModule,
 
   ],
-  exports: [TypeAnalyticsComponent,],
+  exports: [
+    TypeAnalyticsComponent,
+  ],
   entryComponents: [
     EventSearchComponent,
   ]

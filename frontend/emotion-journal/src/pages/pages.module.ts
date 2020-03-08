@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NbLayoutModule, NbSidebarModule, NbCalendarModule, NbInputModule, NbIconModule, NbCardModule, NbSelectModule, NbDatepickerModule, NbButtonModule } from '@nebular/theme';
+import { NbLayoutModule, NbSidebarModule, NbCalendarModule, NbInputModule, NbIconModule, NbCardModule, NbSelectModule, NbDatepickerModule, NbButtonModule, NbToggleModule } from '@nebular/theme';
 
 import { MatChipsModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -27,6 +27,7 @@ import { TypeAnalyticsPageComponent } from './type-analytics-page/type-analytics
     NbSidebarModule,
     NbInputModule,
     NbButtonModule,
+    NbToggleModule,
     NbCalendarModule,
     NbDatepickerModule,
     NbSelectModule,

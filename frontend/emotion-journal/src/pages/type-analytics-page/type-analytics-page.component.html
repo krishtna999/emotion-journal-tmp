@@ -1,7 +1,13 @@
 <nb-layout>
     <nb-sidebar class="sidebar">
         <div class="options">
-            <app-tag-type-autocomplete (tagTypeChange)=setPrimaryTag($event)></app-tag-type-autocomplete>
+            <nb-toggle status="Primary" [(ngModel)]="is_bar_chart">Bar Chart?</nb-toggle>
+            <div>
+                Primary Tag Type
+                <app-tag-type-autocomplete [(tagType)]="prim_tag_type"></app-tag-type-autocomplete>
+                
+            </div>
+
             <app-tag-filter (tagsChange)="setTags($event)"></app-tag-filter>
         </div>
     </nb-sidebar>
@@ -16,7 +22,7 @@
         </nb-card>
         <nb-card>
             <nb-card-body>
-                <app-type-analytics [searchParams]="searchParams" [read_only]="read_only"></app-type-analytics>
+                    <app-type-analytics [searchParams]="searchParams" [read_only]="read_only" [is_bar_chart]="is_bar_chart"></app-type-analytics>
             </nb-card-body>
         </nb-card>
     </nb-layout-column>
